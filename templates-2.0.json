@@ -1075,7 +1075,8 @@
 			"env": [{
 				"name": "PLEX_URL",
 				"label": "URL for Plex",
-				"description": "The URL for you Plex instance"
+				"description": "The URL for you Plex instance",
+				"default": "https://plex.example.com"
 			},{
 				"name": "PLEX_TOKEN",
 				"label": "Plex Token"
@@ -1103,7 +1104,8 @@
 			},{
 				"name": "MOVIE_MATCH_LIBRARY_FILTER",
 				"label": "Library filter",
-				"description": "Libraries to include in matching"
+				"description": "Libraries to include in matching",
+				"default": "Movies, TV Shows"
 			},{
 				"name": "MOVIE_MATCH_FQDN",
 				"label": "Movie Match FQDN",
@@ -1113,22 +1115,19 @@
 				"name": "TRAEFIK_ROUTER_NAME",
 				"label": "Traefik Router Name",
 				"description": "Unique Traefik router name",
-				"default": "moviematch",
-				"preset": true
+				"default": "moviematch"
 
 			},{
 				"name": "TRAEFIK_HTTPS_ENTRYPOINT",
 				"label": "Traefik entrypoint",
 				"description": "Entrypoint to connect to moviematch",
-				"default": "websecure",
-				"preset": true
+				"default": "websecure"
 
 			},{
 				"name": "TRAEFIK_CERT_RESOLVER",
 				"label": "Traefik SSL Resolver",
 				"description": "Traefik SSL certificate resolver",
-				"default": "websecure",
-				"preset": true
+				"default": "tresolver"
 			}]
 		}
 	]
