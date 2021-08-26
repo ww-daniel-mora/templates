@@ -891,7 +891,7 @@
 			"platform": "linux",
 			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/portainer.png",
 			"repository": {
-				"url": "https://github.com/portainer/templates",
+				"url": "https://github.com/ww-daniel-mora/templates",
 				"stackfile": "stacks/portainer-agent/docker-stack.yml"
 			}
 		},
@@ -922,7 +922,7 @@
 			"platform": "linux",
 			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ironfunctions.png",
 			"repository": {
-				"url": "https://github.com/portainer/templates",
+				"url": "https://github.com/ww-daniel-mora/templates",
 				"stackfile": "stacks/ironfunctions/docker-stack.yml"
 			}
 		},
@@ -937,7 +937,7 @@
 			"platform": "linux",
 			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/cockroachdb.png",
 			"repository": {
-				"url": "https://github.com/portainer/templates",
+				"url": "https://github.com/ww-daniel-mora/templates",
 				"stackfile": "stacks/cockroachdb/docker-stack.yml"
 			}
 		},
@@ -952,7 +952,7 @@
 			"platform": "linux",
 			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
 			"repository": {
-				"url": "https://github.com/portainer/templates",
+				"url": "https://github.com/ww-daniel-mora/templates",
 				"stackfile": "stacks/wordpress/docker-stack.yml"
 			},
 			"env": [{
@@ -972,7 +972,7 @@
 			"platform": "linux",
 			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
 			"repository": {
-				"url": "https://github.com/portainer/templates",
+				"url": "https://github.com/ww-daniel-mora/templates",
 				"stackfile": "stacks/wordpress/docker-compose.yml"
 			},
 			"env": [{
@@ -991,7 +991,7 @@
 			"platform": "linux",
 			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
 			"repository": {
-				"url": "https://github.com/portainer/templates",
+				"url": "https://github.com/ww-daniel-mora/templates",
 				"stackfile": "stacks/microsoft-oms/docker-stack.yml"
 			},
 			"env": [{
@@ -1017,7 +1017,7 @@
 			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/sematext_agent.png",
 			"platform": "linux",
 			"repository": {
-				"url": "https://github.com/portainer/templates",
+				"url": "https://github.com/ww-daniel-mora/templates",
 				"stackfile": "stacks/sematext-agent-docker/docker-stack.yml"
 			},
 			"env": [{
@@ -1040,7 +1040,7 @@
 			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/datadog_agent.png",
 			"platform": "linux",
 			"repository": {
-				"url": "https://github.com/portainer/templates",
+				"url": "https://github.com/ww-daniel-mora/templates",
 				"stackfile": "stacks/datadog-agent/docker-stack.yml"
 			},
 			"env": [{
@@ -1049,18 +1049,87 @@
 			}]
 		},
 		{
-	    "type": 4,
-	    "title": "Wordpress",
-	    "description": "Wordpress setup with a MySQL database",
-	    "note": "Deploys a Wordpress instance connected to a MySQL database.",
-	    "stackfile": "https://raw.githubusercontent.com/portainer/templates/master/stacks/wordpress/edge/docker-stack.yml"
-	  },
-	  {
-	    "type": 4,
-	    "title": "CockroachDB",
-	    "description": "CockroachDB cluster",
-	    "note": "Deploys an insecure CockroachDB cluster, please refer to <a href=\"https://www.cockroachlabs.com/docs/stable/orchestrate-cockroachdb-with-docker-swarm.html\" target=\"_blank\">CockroachDB documentation</a> for production deployments.",
-	    "stackfile": "https://raw.githubusercontent.com/portainer/templates/master/stacks/cockroachdb/edge/docker-stack.yml"
-	  }
+			"type": 4,
+			"title": "Wordpress",
+			"description": "Wordpress setup with a MySQL database",
+			"note": "Deploys a Wordpress instance connected to a MySQL database.",
+			"stackfile": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/stacks/wordpress/edge/docker-stack.yml"
+		},
+		{
+			"type": 4,
+			"title": "CockroachDB",
+			"description": "CockroachDB cluster",
+			"note": "Deploys an insecure CockroachDB cluster, please refer to <a href=\"https://www.cockroachlabs.com/docs/stable/orchestrate-cockroachdb-with-docker-swarm.html\" target=\"_blank\">CockroachDB documentation</a> for production deployments.",
+			"stackfile": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/stacks/cockroachdb/edge/docker-stack.yml"
+		},
+		{
+			"type": 3,
+			"title": "MovieMatch",
+			"logo": "https://raw.githubusercontent.com/LukeChannings/moviematch/924dec4a5d84ea214e2e3c9139bc0650d2734e04/public/assets/logo.svg",
+			"description":"Have you ever spent longer deciding on a movie than it'd take to just watch a random movie? This is an app that helps you and your friends pick a movie to watch from a Plex server.",
+			"note": "Deploys a MovieMatch server connected to traefik. You must first configure DNS entrires before deploying this stack",
+			"repository": {
+				"url": "https://github.com/ww-daniel-mora/templates",
+				"stackfile": "stacks/plex/moviematch/docker-compose.yml"
+			},
+			"env": [{
+				"name": "PLEX_URL",
+				"label": "URL for Plex",
+				"description": "The URL for you Plex instance"
+			},{
+				"name": "PLEX_TOKEN",
+				"label": "Plex Token"
+			},{
+				"name": "MOVIE_MATCH_LOG_LEVEL",
+				"label": "Log level",
+				"description": "The Log level for Movie Match",
+				"select": [{
+					"text": "INFO",
+					"value": "INFO",
+					"default": true
+				},{
+					"text": "DEBUG",
+					"value": "DEBUG"
+				},{
+					"text": "WARNING",
+					"value": "WARNING"
+				},{
+					"text": "ERROR",
+					"value": "ERROR"
+				},{
+					"text": "CRITICAL",
+					"value": "CRITICAL"
+				}]
+			},{
+				"name": "MOVIE_MATCH_LIBRARY_FILTER",
+				"label": "Library filter",
+				"description": "Libraries to include in matching"
+			},{
+				"name": "MOVIE_MATCH_FQDN",
+				"label": "Movie Match FQDN",
+				"description": "Ensure that this will resolve to the host machine prior to deploying this stack",
+				"default": "moviematch.example.com"
+			},{
+				"name": "TRAEFIK_ROUTER_NAME",
+				"label": "Traefik Router Name",
+				"description": "Unique Traefik router name",
+				"default": "moviematch",
+				"preset": true
+
+			},{
+				"name": "TRAEFIK_HTTPS_ENTRYPOINT",
+				"label": "Traefik entrypoint",
+				"description": "Entrypoint to connect to moviematch",
+				"default": "websecure",
+				"preset": true
+
+			},{
+				"name": "TRAEFIK_CERT_RESOLVER",
+				"label": "Traefik SSL Resolver",
+				"description": "Traefik SSL certificate resolver",
+				"default": "websecure",
+				"preset": true
+			}]
+		}
 	]
 }
