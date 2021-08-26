@@ -9,7 +9,7 @@ services:
       - "LOG_LEVEL=${MOVIE_MATCH_LOG_LEVEL}"
       - "LIBRARY_FILTER=${MOVIE_MATCH_LIBRARY_FILTER}"
     networks:
-     - "${TRAEFIK_NETWORK}"
+     - web
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}.rule=Host(`${MOVIE_MATCH_FQDN}`)"
@@ -20,5 +20,5 @@ services:
       - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}.tls.domains[0].main=${MOVIE_MATCH_FQDN}"
 
 networks:
-  "${TRAEFIK_NETWORK}":
+  web:
     external: true
