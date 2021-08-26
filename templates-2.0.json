@@ -1116,13 +1116,11 @@
 				"label": "Traefik Router Name",
 				"description": "Unique Traefik router name",
 				"default": "moviematch"
-
 			},{
 				"name": "TRAEFIK_HTTPS_ENTRYPOINT",
 				"label": "Traefik entrypoint",
 				"description": "Entrypoint to connect to moviematch",
 				"default": "websecure"
-
 			},{
 				"name": "TRAEFIK_CERT_RESOLVER",
 				"label": "Traefik SSL Resolver",
