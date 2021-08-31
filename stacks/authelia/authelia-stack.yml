@@ -1,4 +1,18 @@
 version: '3.8'
+secrets:
+  authelia-jwt:
+    external: true
+  authelia-session:
+    external: true
+  authelia-redis-pw:
+    external: true
+  authelia-oidc-pk:
+    external: true
+  authelia-hmac:
+    external: true
+  google-smtp-pw:
+    external: true
+
 services:
   authelia:
     image: authelia/authelia:latest
@@ -18,8 +32,8 @@ services:
       - AUTHELIA_JWT_SECRET_FILE=/run/secrets/authelia-jwt
       - AUTHELIA_SESSION_SECRET_FILE=/run/secrets/authelia-session
       - AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE=/run/secrets/google-smtp-pw
-      - AUTHELIA_SESSION_REDIS_PASSWORD_FILE=/run/secrets/authelia-redis-pw
-      - AUTHELIA_IDENTITY_PROVIDERS_OIDC_ISSUER_PRIVATE_KEY_FILE/run/secrets/authelia-oidc-pk
+        # - AUTHELIA_SESSION_REDIS_PASSWORD_FILE=/run/secrets/authelia-redis-pw
+      - AUTHELIA_IDENTITY_PROVIDERS_OIDC_ISSUER_PRIVATE_KEY_FILE=/run/secrets/authelia-oidc-pk
       - AUTHELIA_IDENTITY_PROVIDERS_OIDC_HMAC_SECRET_FILE=/run/secrets/authelia-hmac
       
     deploy:
