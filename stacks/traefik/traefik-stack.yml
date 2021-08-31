@@ -23,11 +23,12 @@ services:
       - "--certificatesresolvers.tls-resolver.acme.email=${ACME_EMAIL}"
       - "--certificatesresolvers.tls-resolver.acme.storage=/letsencrypt/tls-acme.json"
       - "--certificatesresolvers.tls-resolver.acme.tlschallenge=true"
-      - "--certificatesresolvers.tls-resolver.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
       - "--certificatesresolvers.dns-resolver.acme.email=${ACME_EMAIL}"
       - "--certificatesresolvers.dns-resolver.acme.storage=/letsencrypt/dns-acme.json"
       - "--certificatesresolvers.dns-resolver.acme.dnschallenge.provider=gcloud"
-        # DEBUG Setting - "--certificatesresolvers.dns-resolver.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
+        # Use testing resolvers when testing challenge verification
+        # - "--certificatesresolvers.tls-resolver.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
+        # - "--certificatesresolvers.dns-resolver.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
     ports:
       - "80:80"
       - "443:443"
