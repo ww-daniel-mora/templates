@@ -1,0 +1,50 @@
+version: '3'
+services:
+  authelia:
+    image: authelia/authelia:latest
+    volumes:
+      - ${AUTHELIA_CONFIG_DIR}:/config
+    networks:
+      - traefik-public
+    secrets:
+      - authelia-jwt
+      - authelia-session
+      - authelia-redis-pw
+      - authelia-oidc-pk
+      - authelia-hmac
+      - google-smtp-pw
+    environment:
+      - TZ=America/New_York
+      - AUTHELIA_JWT_SECRET_FILE=/run/secrets/authelia-jwt
+      - AUTHELIA_SESSION_SECRET_FILE=/run/secrets/authelia-session
+      - AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE=/run/secrets/google-smtp-pw
+      - AUTHELIA_SESSION_REDIS_PASSWORD_FILE=/run/secrets/authelia-redis-pw
+      - AUTHELIA_IDENTITY_PROVIDERS_OIDC_ISSUER_PRIVATE_KEY_FILE/run/secrets/authelia-oidc-pk
+      - AUTHELIA_IDENTITY_PROVIDERS_OIDC_HMAC_SECRET_FILE=/run/secrets/authelia-hmac
+      
+    deploy:
+      labels:
+        - 'traefik.enable=true'
+        - 'traefik.http.routers.authelia.rule=Host(`${AUTHELIA_FQDN}`)'
+        - 'traefik.http.routers.authelia.entrypoints=web,websecure'
+        - 'traefik.http.routers.authelia.tls=true'
+        - 'traefik.http.routers.authelia.tls.certresolver=dns-resolver'
+        - 'traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/verify?rd=https://${AUTHELIA_FQDN}'  # yamllint disable-line rule:line-length
+        - 'traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true'
+        - 'traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email'  # yamllint disable-line rule:line-length
+        - 'traefik.http.middlewares.authelia-basic.forwardauth.address=http://authelia:9091/api/verify?auth=basic'
+        - 'traefik.http.middlewares.authelia-basic.forwardauth.trustForwardHeader=true'
+        - 'traefik.http.middlewares.authelia-basic.forwardauth.authResponseHeaders=Remote-User, Remote-Groups, Remote-Name, Remote-Email'
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - ${AUTHELIA_REDIS_DATA_DIR}:/data
+    networks:
+      - traefik-public
+    environment:
+      - TZ=America/New_York
+      
+networks:
+  traefik-public:
+    external: true

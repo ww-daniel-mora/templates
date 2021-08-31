@@ -1063,11 +1063,15 @@
 			"stackfile": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/stacks/cockroachdb/edge/docker-stack.yml"
 		},
 		{
-			"type": 3,
+			"type": 2,
 			"title": "MovieMatch",
-			"logo": "https://raw.githubusercontent.com/LukeChannings/moviematch/924dec4a5d84ea214e2e3c9139bc0650d2734e04/public/assets/logo.svg",
 			"description":"Have you ever spent longer deciding on a movie than it'd take to just watch a random movie? This is an app that helps you and your friends pick a movie to watch from a Plex server.",
 			"note": "Deploys a MovieMatch server connected to traefik. You must first configure DNS entrires before deploying this stack",
+			"categories": [
+				"Plex",
+				"Media"
+			],
+			"logo": "https://raw.githubusercontent.com/LukeChannings/moviematch/924dec4a5d84ea214e2e3c9139bc0650d2734e04/public/assets/logo.svg",
 			"repository": {
 				"url": "https://github.com/ww-daniel-mora/templates",
 				"stackfile": "stacks/plex/moviematch/docker-compose.yml"
@@ -1126,6 +1130,65 @@
 				"label": "Traefik SSL Resolver",
 				"description": "Traefik SSL certificate resolver",
 				"default": "tresolver"
+			}]
+		},
+		{
+			"type": 2,
+			"name": "traefik",
+			"logo": "https://blog.soat.fr/wp-content/uploads/2016/04/traefik.logo-400-224x300.png",
+			"repository": {
+				"url": "https://github.com/ww-daniel-mora/templates",
+				"stackfile": "stacks/traefik/traefik-stack.yml"
+			},
+			"description": "Traefik is a leading modern reverse proxy and load balancer that makes deploying microservices easy. Traefik integrates with your existing infrastructure components and configures itself automatically and dynamically.",
+			"categories": ["reverse-proxy"],
+			"env": [{
+				"name": "TRAEFIK_FQDN",
+				"label": "Traefik FQDN",
+				"description": "The FQDN to use for Traefik",
+				"default": "traefik.example.com"
+			},{
+				"name": "ACME_EMAIL",
+				"label": "ACME E-Mail",
+				"description": "The email address used to communicate with letsencrypte.",
+				"default": "youname@yourdomain.com"
+			},{
+				"name": "TRAEFIK_LE_DIR",
+				"label": "letsencrypt directory",
+				"description": "Storage for certificates from letsencrypt.",
+				"default": "/opt/traefik/letsencrypt"
+			},{
+				"name": "TRAEFIK_CONFIG_DIR",
+				"label": "Config directory",
+				"description": "Directory with configuration files for traefik.",
+				"default": "/opt/traefik/config"
+			}]
+		},
+		{
+			"type": 2,
+			"name": "Authelia",
+			"logo": "https://www.authelia.com/images/title.png",
+			"repository": {
+				"url": "https://github.com/ww-daniel-mora/templates",
+				"stackfile": "stacks/authelia/authelia-stack.yml"
+			},
+			"description": "Protect your applications with Single Sign-On and 2 Factor. Authelia is an open-source full-featured authentication server available on Github.",
+			"categories": ["authentication"],
+			"env": [{
+				"name": "AUTHELIA_FQDN",
+				"label": "Authelia FQDN",
+				"description": "The FQDN to use for Authelia",
+				"default": "auth.example.com"
+			},{
+				"name": "AUTHELIA_CONFIG_DIR",
+				"label": "Config directory",
+				"description": "Directory with config.yml file for Authelia",
+				"default": "/opt/authelia/config"
+			},{
+				"name": "AUTHELIA_REDIS_DATA_DIR",
+				"label": "Redis data directory",
+				"description": "Directory for Redsi",
+				"default": "/opt/authelia/redis"
 			}]
 		}
 	]
