@@ -1,4 +1,8 @@
 version: "3.8"
+secrets:
+  gcloud-dns-service-account:
+    external: true
+
 services:
   traefik:
     image: "traefik:latest"
