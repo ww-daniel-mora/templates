@@ -1162,6 +1162,10 @@
 				"label": "Config directory",
 				"description": "Directory with configuration files for traefik.",
 				"default": "/opt/traefik/config"
+			},{
+				"name": "GCE_PROJECT",
+				"label": "GCE Project",
+				"description": "Google Cloud project name"
 			}]
 		},
 		{

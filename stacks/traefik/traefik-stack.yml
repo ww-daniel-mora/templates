@@ -41,12 +41,14 @@ services:
       - gcloud-dns-service-account
     environment:
       - GOOGLE_APPLICATION_CREDENTIALS=/run/secrets/gcloud-dns-service-account
+      - GCE_PROJECT=${GCE_PROJECT}
     deploy:
       placement:
         constraints:
           - node.role == manager
       labels:
         - "traefik.enable=true"
+        - "traefik.http.services.traefik.loadbalancer.server.port=8080"
         - "traefik.http.routers.traefik.rule=Host(`${TRAEFIK_FQDN}`)"
         - "traefik.http.routers.traefik.service=api@internal"
         - "traefik.http.routers.traefik.middlewares=authelia@docker"
