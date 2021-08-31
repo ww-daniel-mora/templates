@@ -1,0 +1,54 @@
+version: "3"
+services:
+  traefik:
+    image: "traefik:latest"
+    command:
+      - "--ping=true"
+      - "--log.level=DEBUG"
+      - "--api.dashboard=true"
+      - "--entrypoints.websecure.address=:443"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+      - "--providers.docker=true"
+      - "--providers.docker.swarmMode=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.network=traefik-public"
+      - "--providers.file.directory=/config"
+      - "--providers.file.watch=true"
+      - "--certificatesresolvers.tls-resolver.acme.email=${ACME_EMAIL}"
+      - "--certificatesresolvers.tls-resolver.acme.storage=/letsencrypt/tls-acme.json"
+      - "--certificatesresolvers.tls-resolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.tls-resolver.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
+      - "--certificatesresolvers.dns-resolver.acme.email=${ACME_EMAIL}"
+      - "--certificatesresolvers.dns-resolver.acme.storage=/letsencrypt/dns-acme.json"
+      - "--certificatesresolvers.dns-resolver.acme.dnschallenge.provider=gcloud"
+      - "--certificatesresolvers.dns-resolver.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - traefik-public
+    volumes:
+      - ${TRAEFIK_LE_DIR}:/letsencrypt
+      - ${TRAEFIK_CONFIG_DIR}:/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    secrets:
+      - gcloud-dns-service-account
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS: /run/secrets/gcloud-dns-service-account
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.traefik.rule=Host(`${TRAEFIK_FQDN}`)"
+        - "traefik.http.routers.traefik.service=api@internal"
+        - "traefik.http.routers.traefik.middlewares=authelia@docker"
+        - "traefik.http.routers.traefik.tls=true"
+        - "traefik.http.routers.traefik.entrypoints=web,websecure"
+        - "traefik.http.routers.traefik.tls.certresolver=dns-resolver"
+networks:
+  traefik-public:
+    external: true
