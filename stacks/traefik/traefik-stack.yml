@@ -27,7 +27,7 @@ services:
       - "--certificatesresolvers.dns-resolver.acme.email=${ACME_EMAIL}"
       - "--certificatesresolvers.dns-resolver.acme.storage=/letsencrypt/dns-acme.json"
       - "--certificatesresolvers.dns-resolver.acme.dnschallenge.provider=gcloud"
-      - "--certificatesresolvers.dns-resolver.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
+        # DEBUG Setting - "--certificatesresolvers.dns-resolver.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
     ports:
       - "80:80"
       - "443:443"
