@@ -10,22 +10,31 @@ services:
       - "--ping=true"
       - "--log.level=DEBUG"
       - "--api.dashboard=true"
-      - "--entrypoints.websecure.address=:443"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
-      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
-      - "--providers.docker=true"
-      - "--providers.docker.swarmMode=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--providers.docker.network=traefik-public"
-      - "--providers.file.directory=/config"
-      - "--providers.file.watch=true"
+      # Certificate Resolvers
       - "--certificatesresolvers.tls-resolver.acme.email=${ACME_EMAIL}"
       - "--certificatesresolvers.tls-resolver.acme.storage=/letsencrypt/tls-acme.json"
       - "--certificatesresolvers.tls-resolver.acme.tlschallenge=true"
       - "--certificatesresolvers.dns-resolver.acme.email=${ACME_EMAIL}"
       - "--certificatesresolvers.dns-resolver.acme.storage=/letsencrypt/dns-acme.json"
       - "--certificatesresolvers.dns-resolver.acme.dnschallenge.provider=gcloud"
+      # Endpoints
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      # Redirect to HTTPS
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+      # Configure default TLS
+      - "--entrypoints.websecure.http.tls.certresolver=dns-resolver"
+      - "--entrypoints.websecure.http.tls.domains[0].main=morastein.com"
+      - "--entrypoints.websecure.http.tls.domains[0].sans=*.morastein.com"
+      # File provider
+      - "--providers.file.directory=/config"
+      - "--providers.file.watch=true"
+      # Docker provider
+      - "--providers.docker=true"
+      - "--providers.docker.swarmMode=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.network=traefik-public"
         # Use testing resolvers when testing challenge verification
         # - "--certificatesresolvers.tls-resolver.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
         # - "--certificatesresolvers.dns-resolver.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
