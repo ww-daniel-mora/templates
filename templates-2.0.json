@@ -1064,6 +1064,38 @@
 		},
 		{
 			"type": 2,
+			"title": "Plex",
+			"description": "Plex brings together all the media that matters to you. Your personal collection will look beautiful alongside stellar streaming content. Enjoy Live TV & DVR, a growing catalog of great web shows, news, and podcasts. It's finally possible to enjoy all the media you love in a single app, on any device, no matter where you are.",
+			"notes": "Plex must run in standalone mode to for hardware transcoding. To connect this to traefik you must add routing to the file provider.",
+			"categories": [
+				"Plex",
+				"Media"
+			],
+			"repository": {
+				"url": "https://github.com/ww-daniel-mora/templates",
+				"stackfile": "stacks/plex/docker-compose.yml"
+			},
+			"env": [{
+				"name": "PLEX_FQDN",
+				"label": "Plex FQDN",
+				"default": "plex.exmaple.com"
+			},{
+				"name": "PLEX_TZ",
+				"label": "Time Zone",
+				"default": "America/New_York"
+			},{
+				"name": "PLEX_UID",
+				"label": "Plex User Id"
+			},{
+				"name": "PLEX_GID",
+				"label": "Plex Group Id"
+			},{
+				"name": "PLEX_CLAIM",
+				"label": "Plex Claim"
+			}]
+		},
+		{
+			"type": 2,
 			"title": "MovieMatch",
 			"description":"Have you ever spent longer deciding on a movie than it'd take to just watch a random movie? This is an app that helps you and your friends pick a movie to watch from a Plex server.",
 			"note": "Deploys a MovieMatch server connected to traefik. You must first configure DNS entrires before deploying this stack",
@@ -1074,7 +1106,7 @@
 			"logo": "https://raw.githubusercontent.com/LukeChannings/moviematch/924dec4a5d84ea214e2e3c9139bc0650d2734e04/public/assets/logo.svg",
 			"repository": {
 				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/plex/moviematch/docker-compose.yml"
+				"stackfile": "stacks/plex/moviematch/moviematch-stack.yml"
 			},
 			"env": [{
 				"name": "PLEX_URL",
@@ -1115,21 +1147,6 @@
 				"label": "Movie Match FQDN",
 				"description": "Ensure that this will resolve to the host machine prior to deploying this stack",
 				"default": "moviematch.example.com"
-			},{
-				"name": "TRAEFIK_ROUTER_NAME",
-				"label": "Traefik Router Name",
-				"description": "Unique Traefik router name",
-				"default": "moviematch"
-			},{
-				"name": "TRAEFIK_HTTPS_ENTRYPOINT",
-				"label": "Traefik entrypoint",
-				"description": "Entrypoint to connect to moviematch",
-				"default": "websecure"
-			},{
-				"name": "TRAEFIK_CERT_RESOLVER",
-				"label": "Traefik SSL Resolver",
-				"description": "Traefik SSL certificate resolver",
-				"default": "tresolver"
 			}]
 		},
 		{

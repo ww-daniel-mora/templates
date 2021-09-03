@@ -35,9 +35,9 @@ services:
       - "--providers.docker.swarmMode=true"
       - "--providers.docker.exposedbydefault=false"
       - "--providers.docker.network=traefik-public"
-        # Use testing resolvers when testing challenge verification
-        # - "--certificatesresolvers.tls-resolver.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
-        # - "--certificatesresolvers.dns-resolver.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
+      # Use testing resolvers when testing challenge verification
+      # - "--certificatesresolvers.tls-resolver.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
+      # - "--certificatesresolvers.dns-resolver.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
     ports:
       - "80:80"
       - "443:443"
