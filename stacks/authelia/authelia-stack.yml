@@ -41,12 +41,14 @@ services:
         - 'traefik.enable=true'
         - 'traefik.http.services.authelia.loadbalancer.server.port=9091'
         - 'traefik.http.routers.authelia.rule=Host(`${AUTHELIA_FQDN}`)'
-        - 'traefik.http.routers.authelia.entrypoints=web,websecure'
+        - 'traefik.http.routers.authelia.entrypoints=websecure'
+        - 'traefik.http.routers.authelia.middlewares=authelia-cors'
         - 'traefik.http.routers.authelia.tls=true'
-        - 'traefik.http.routers.authelia.tls.certresolver=dns-resolver'
-        - 'traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/verify?rd=https://${AUTHELIA_FQDN}'  # yamllint disable-line rule:line-length
+        - 'traefik.http.middlewares.authelia-cors.headers.accesscontrolalloworigin=`*.morastein.com`'
+        - 'traefik.http.middlewares.authelia-cors.headers.addvaryheader=true'
+        - 'traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/verify?rd=https://${AUTHELIA_FQDN}'
         - 'traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true'
-        - 'traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email'  # yamllint disable-line rule:line-length
+        - 'traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email'
         - 'traefik.http.middlewares.authelia-basic.forwardauth.address=http://authelia:9091/api/verify?auth=basic'
         - 'traefik.http.middlewares.authelia-basic.forwardauth.trustForwardHeader=true'
         - 'traefik.http.middlewares.authelia-basic.forwardauth.authResponseHeaders=Remote-User, Remote-Groups, Remote-Name, Remote-Email'
