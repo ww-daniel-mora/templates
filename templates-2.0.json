@@ -1065,7 +1065,7 @@
 		{
 			"type": 3,
 			"title": "Plex",
-			"logo": "https://s3-eu-west-1.amazonaws.com/tpd/logos/565e2e9b0000ff00058632b8/0x0.png",
+			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/plex.png",
 			"description": "Plex brings together all the media that matters to you. Your personal collection will look beautiful alongside stellar streaming content. Enjoy Live TV & DVR, a growing catalog of great web shows, news, and podcasts. It's finally possible to enjoy all the media you love in a single app, on any device, no matter where you are.",
 			"notes": "Plex must run in standalone mode to for hardware transcoding. To connect this to traefik you must add routing to the file provider.",
 			"categories": [
@@ -1104,7 +1104,7 @@
 				"Plex",
 				"Media"
 			],
-			"logo": "https://raw.githubusercontent.com/LukeChannings/moviematch/924dec4a5d84ea214e2e3c9139bc0650d2734e04/public/assets/logo.svg",
+			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/moviematch.jpeg",
 			"repository": {
 				"url": "https://github.com/ww-daniel-mora/templates",
 				"stackfile": "stacks/plex/moviematch/moviematch-stack.yml"
@@ -1153,7 +1153,7 @@
 		{
 			"type": 2,
 			"name": "traefik",
-			"logo": "https://blog.soat.fr/wp-content/uploads/2016/04/traefik.logo-400-224x300.png",
+			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/traefik.png",
 			"repository": {
 				"url": "https://github.com/ww-daniel-mora/templates",
 				"stackfile": "stacks/traefik/traefik-stack.yml"
@@ -1189,7 +1189,7 @@
 		{
 			"type": 2,
 			"name": "Authelia",
-			"logo": "https://www.authelia.com/images/title.png",
+			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/authelia.png",
 			"repository": {
 				"url": "https://github.com/ww-daniel-mora/templates",
 				"stackfile": "stacks/authelia/authelia-stack.yml"
@@ -1217,7 +1217,7 @@
 		{
 			"type": 2,
 			"name": "Wekan",
-			"logo": "https://wekan.github.io/wekan-logo.png",
+			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/wekan.png",
 			"repository": {
 				"url": "https://github.com/ww-daniel-mora/templates",
 				"stackfile": "stacks/wekan/wekan-stack.yml"
