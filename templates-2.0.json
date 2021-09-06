@@ -1212,6 +1212,55 @@
 				"description": "Directory for Redsi",
 				"default": "/opt/authelia/redis"
 			}]
+
+		},
+		{
+			"type": 2,
+			"name": "Wekan",
+			"logo": "https://wekan.github.io/wekan-logo.png",
+			"repository": {
+				"url": "https://github.com/ww-daniel-mora/templates",
+				"stackfile": "stacks/wekan/wekan-stack.yml"
+			},
+			"description": "Wekan is an open-source kanban board which allows a card-based task and to-do management.",
+			"categories": ["Project Management"],
+			"env": [{
+				"name": "ROOT_URL",
+				"label": "Root URL",
+				"description": "Root URL",
+				"default": "https://wekan.morastein.com"
+			},{
+				"name": "MAIL_URL",
+				"label": "Mail URL",
+				"description": "Mail send url",
+				"default": "smtps://smtp.gmail.com:587"
+			},{
+				"name": "MAIL_SERVICE",
+				"label": "Mail Service",
+				"description": "Mail service name",
+				"default": "GMail"
+			},{
+				"name": "MAIL_SERVICE_USER",
+				"label": "Mail service user",
+				"description": "Mail service user name"
+			},{
+				"name": "MAIL_SERVICE_PASSWORD",
+				"label": "Mail service password",
+				"description": "Mail service app password"
+			},{
+				"name": "CORS",
+				"label": "CORS",
+				"description": "CORS authorized domains"
+			},{
+				"name": "OAUTH2_CLIENT_ID",
+				"label": "OAuth Client Id"
+			},{
+				"name": "OAUTH2_SECRET",
+				"label": "OAuth secret"
+			},{
+				"name": "OAUTH2_SERVER_URL",
+				"label": "OAuth2 server URL"
+			}]
 		}
 	]
 }

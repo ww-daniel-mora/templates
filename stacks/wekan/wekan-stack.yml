@@ -1,0 +1,139 @@
+version: '3.8'
+services:
+  wekandb:
+    image: mongo:4.4
+    command: mongod --logpath /dev/null --oplogSize 128 --quiet
+    networks:
+      - traefik-public
+    volumes:
+      - wekan-db:/data/db
+      - wekan-db-dump:/dump
+
+  wekan:
+    image: mora/wekan
+    networks:
+      - traefik-public
+    ports:
+      - 8080
+    environment:
+      - MONGO_URL=mongodb://wekandb:27017/wekan
+      - ROOT_URL=${ROOT_URL}
+      - MAIL_URL=${MAIL_URL}
+      - MAIL_FROM=Wekan Notifications <noreply.wekan@morastein.com>
+      - MAIL_SERVICE=${MAIL_SERVICE}
+      - MAIL_SERVICE_USER=${MAIL_SERVICE_USER}
+      - MAIL_SERVICE_PASSWORD=${MAIL_SERVICE_PASSWORD}
+      - WITH_API=true
+      #---------------------------------------------------------------
+      # ==== PASSWORD BRUTE FORCE PROTECTION ====
+      # https://atmospherejs.com/lucasantoniassi/accounts-lockout
+      # Defaults below. Uncomment to change. wekan/server/accounts-lockout.js
+      #- ACCOUNTS_LOCKOUT_KNOWN_USERS_FAILURES_BEFORE=3
+      #- ACCOUNTS_LOCKOUT_KNOWN_USERS_PERIOD=60
+      #- ACCOUNTS_LOCKOUT_KNOWN_USERS_FAILURE_WINDOW=15
+      #- ACCOUNTS_LOCKOUT_UNKNOWN_USERS_FAILURES_BERORE=3
+      #- ACCOUNTS_LOCKOUT_UNKNOWN_USERS_LOCKOUT_PERIOD=60
+      #- ACCOUNTS_LOCKOUT_UNKNOWN_USERS_FAILURE_WINDOW=15
+      #---------------------------------------------------------------
+      - RICHER_CARD_COMMENT_EDITOR=false
+      #---------------------------------------------------------------
+      # ==== CARD OPENED, SEND WEBHOOK MESSAGE ====
+      # https://github.com/wekan/wekan/issues/2518
+      - CARD_OPENED_WEBHOOK_ENABLED=false
+      #---------------------------------------------------------------
+      # ==== NOTIFICATION TRAY AFTER READ DAYS BEFORE REMOVE =====
+      # Number of days after a notification is read before we remove it.
+      # Default: 2
+      #- NOTIFICATION_TRAY_AFTER_READ_DAYS_BEFORE_REMOVE=2
+      #---------------------------------------------------------------
+      # ==== BIGEVENTS DUE ETC NOTIFICATIONS =====
+      # https://github.com/wekan/wekan/pull/2541
+      # Introduced a system env var BIGEVENTS_PATTERN default as "NONE",
+      # so any activityType matches the pattern, system will send out
+      # notifications to all board members no matter they are watching
+      # or tracking the board or not. Owner of the wekan server can
+      # disable the feature by setting this variable to "NONE" or
+      # change the pattern to any valid regex. i.e. '|' delimited
+      # activityType names.
+      # a) Example
+      #- BIGEVENTS_PATTERN=due
+      # b) All
+      #- BIGEVENTS_PATTERN=received|start|due|end
+      # c) Disabled
+      - BIGEVENTS_PATTERN=NONE
+      #---------------------------------------------------------------
+      # ==== CORS =====
+      # CORS: Set Access-Control-Allow-Origin header.
+      - "CORS=Access-Control-Allow-Origin: *.morastein.com"
+      # CORS_ALLOW_HEADERS: Set Access-Control-Allow-Headers header.  "Authorization,Content-Type" is required for cross-origin use of the API.
+      - CORS_ALLOW_HEADERS=Authorization,Content-Type
+      # CORS_EXPOSE_HEADERS: Set Access-Control-Expose-Headers header.  This is not needed for typical CORS situations
+      #- CORS_EXPOSE_HEADERS=*
+      #-----------------------------------------------------------------
+      # ==== BROWSER POLICY AND TRUSTED IFRAME URL ====
+      # Enable browser policy and allow one trusted URL that can have iframe that has Wekan embedded inside.
+      # Setting this to false is not recommended, it also disables all other browser policy protections
+      # and allows all iframing etc. See wekan/server/policy.js
+      - BROWSER_POLICY_ENABLED=true
+      # When browser policy is enabled, HTML code at this Trusted URL can have iframe that embeds Wekan inside.
+      #- TRUSTED_URL=https://intra.example.com
+      #-----------------------------------------------------------------
+      # ==== OUTGOING WEBHOOKS ====
+      # What to send to Outgoing Webhook, or leave out. If commented out the default values will be: cardId,listId,oldListId,boardId,comment,user,card,commentId,swimlaneId,customerField,customFieldValue
+      #- WEBHOOKS_ATTRIBUTES=cardId,listId,oldListId,boardId,comment,user,card,commentId
+      #-----------------------------------------------------------------
+      # ==== Debug OIDC OAuth2 etc ====
+      # - DEBUG=true
+      #-----------------------------------------------------------------
+      # ==== OAUTH2 Authelia ====
+      # 1) Register the application with Authelia
+      #    Make sure you capture the application ID as well as generate a secret key.
+      #    Use https://your.wekan/_oauth/oidc for the redirect URI.
+      # 2) Configure the environment variables. This differs slightly
+      #     by installation type, but make sure you have the following:
+      - OAUTH2_ENABLED=true
+      # OAuth2 login style: popup or redirect.
+      - OAUTH2_LOGIN_STYLE=redirect
+      # Application GUID captured during app registration:
+      - OAUTH2_CLIENT_ID=${OAUTH2_CLIENT_ID}
+      # Secret key generated during app registration:
+      - OAUTH2_SECRET=${OAUTH2_SECRET}
+      - OAUTH2_SERVER_URL=${OAUTH2_SERVER_URL}
+      - OAUTH2_AUTH_ENDPOINT=/api/oidc/authorize
+      - OAUTH2_USERINFO_ENDPOINT=/api/oidc/userinfo
+      - OAUTH2_TOKEN_ENDPOINT=/api/oidc/token
+      # The claim name you want to map to the unique ID field:
+      - OAUTH2_ID_MAP=sub
+      # The claim name you want to map to the username field:
+      - OAUTH2_USERNAME_MAP=sub
+      # The claim name you want to map to the full name field:
+      - OAUTH2_FULLNAME_MAP=name
+      # The claim name you want to map to the email field:
+      - OAUTH2_EMAIL_MAP=email
+      - OAUTH2_REQUEST_PERMISSIONS=openid profile email
+      #-----------------------------------------------------------------
+      # Hide password login form
+      - PASSWORD_LOGIN_ENABLED=false
+      #-------------------------------------------------------------------
+      # Wait spinner to use
+      # - WAIT_SPINNER=Bounce
+      #---------------------------------------------------------------------
+    depends_on:
+      - wekandb
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.services.wekan.loadbalancer.server.port=8080"
+        - "traefik.http.routers.wekan.rule=Host(`${ROOT_URL}`)"
+        - "traefik.http.routers.wekan.middlewares=authelia@docker"
+        - "traefik.http.routers.wekan.tls=true"
+        - "traefik.http.routers.wekan.entrypoints=websecure"
+volumes:
+  wekan-db:
+    driver: local
+  wekan-db-dump:
+    driver: local
+
+networks:
+  traefik-public:
+    external: true
