@@ -1152,7 +1152,7 @@
 		},
 		{
 			"type": 2,
-			"name": "traefik",
+			"title": "traefik",
 			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/traefik.png",
 			"repository": {
 				"url": "https://github.com/ww-daniel-mora/templates",
@@ -1188,7 +1188,7 @@
 		},
 		{
 			"type": 2,
-			"name": "Authelia",
+			"title": "Authelia",
 			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/authelia.png",
 			"repository": {
 				"url": "https://github.com/ww-daniel-mora/templates",
@@ -1216,7 +1216,7 @@
 		},
 		{
 			"type": 2,
-			"name": "Wekan",
+			"title": "Wekan",
 			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/wekan.png",
 			"repository": {
 				"url": "https://github.com/ww-daniel-mora/templates",
