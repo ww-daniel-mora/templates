@@ -44,7 +44,7 @@ services:
         - 'traefik.http.routers.authelia.entrypoints=websecure'
         - 'traefik.http.routers.authelia.middlewares=authelia-cors'
         - 'traefik.http.routers.authelia.tls=true'
-        - 'traefik.http.middlewares.authelia-cors.headers.accesscontrolalloworigin=`*.morastein.com`'
+        - 'traefik.http.middlewares.authelia-cors.headers.accesscontrolalloworigin=*.morastein.com'
         - 'traefik.http.middlewares.authelia-cors.headers.addvaryheader=true'
         - 'traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/verify?rd=https://${AUTHELIA_FQDN}'
         - 'traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true'

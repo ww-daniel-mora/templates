@@ -1228,7 +1228,7 @@
 				"name": "ROOT_URL",
 				"label": "Root URL",
 				"description": "Root URL",
-				"default": "https://wekan.morastein.com"
+				"default": "https://wekan.example.com"
 			},{
 				"name": "MAIL_URL",
 				"label": "Mail URL",
