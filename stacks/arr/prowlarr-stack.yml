@@ -9,7 +9,7 @@ services:
     volumes:
       - /opt/prowlarr/data:/config
     networks:
-      traefik-public
+      - traefik-public
     deploy:
       labels:
         - "traefik.enable=true"
