@@ -1261,6 +1261,32 @@
 				"name": "OAUTH2_SERVER_URL",
 				"label": "OAuth2 server URL"
 			}]
+		},
+		{
+			"type": 2,
+			"title": "Prowlarr",
+			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/prowlarr.png",
+			"repository": {
+				"url": "https://github.com/ww-daniel-mora/templates",
+				"stackfile": "stacks/arr/prowlarr-stack.yml"
+			},
+			"description": "Prowlarr is an indexer manager/proxy built on the popular arr .net/reactjs base stack to integrate with your various PVR apps. Prowlarr supports management of both Torrent Trackers and Usenet Indexers. It integrates seamlessly with Lidarr, Mylar3, Radarr, Readarr, and Sonarr offering complete management of your indexers with no per app Indexer setup required (we do it all).",
+			"categories": ["media"],
+			"env": [{
+				"name": "PROWLARR_FQDN",
+				"label": "FQDN",
+				"default": "prowlarr.example.com"
+			},{
+				"name": "PROWLARR_PUID",
+				"label": "User Id"
+			},{
+				"name": "PROWLARR_PGID",
+				"label": "Group Id"
+			},{
+				"name": "PROWLARR_TZ",
+				"label": "Timezone",
+				"default": "America/New_York"
+			}]
 		}
 	]
 }
