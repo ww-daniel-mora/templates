@@ -15,7 +15,7 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.services.sonarr.loadbalancer.server.port=9696"
+        - "traefik.http.services.sonarr.loadbalancer.server.port=8989"
         - "traefik.http.routers.sonarr.rule=Host(`${SONARR_FQDN}`)"
         - "traefik.http.routers.sonarr.middlewares=authelia@docker"
         - "traefik.http.routers.sonarr.tls=true"
