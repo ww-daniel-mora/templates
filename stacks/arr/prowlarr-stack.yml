@@ -1,0 +1,23 @@
+version: 3.8
+services:
+  prowlarr:
+    image: ghcr.io/linuxserver/prowlarr:develop
+    environment:
+      - PUID=${PROWLARR_PUID}
+      - PGID=${PROWLARR_PGID}
+      - TZ=${PROWLARR_TZ}
+    volumes:
+      - /opt/prowlarr/data:/config
+    networks:
+      traefik-public
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
+        - "traefik.http.routers.prowlarr.rule=Host(`${PROWLARR_FQDN}`)"
+        - "traefik.http.routers.prowlarr.middlewares=authelia@docker"
+        - "traefik.http.routers.prowlarr.tls=true"
+        - "traefik.http.routers.prowlarr.entrypoints=websecure"
+networks:
+  traefik-public:
+    external: true
