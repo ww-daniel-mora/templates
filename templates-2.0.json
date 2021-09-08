@@ -1287,6 +1287,32 @@
 				"label": "Timezone",
 				"default": "America/New_York"
 			}]
+		},
+		{
+			"type": 2,
+			"title": "Sonarr",
+			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/sonarr.png",
+			"repository": {
+				"url": "https://github.com/ww-daniel-mora/templates",
+				"stackfile": "stacks/arr/sonarr-stack.yml"
+			},
+			"description": "Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.",
+			"categories": ["media"],
+			"env": [{
+				"name": "SONARR_FQDN",
+				"label": "FQDN",
+				"default": "sonarr.example.com"
+			},{
+				"name": "SONARR_PUID",
+				"label": "User Id"
+			},{
+				"name": "SONARR_PGID",
+				"label": "Group Id"
+			},{
+				"name": "SONARR_TZ",
+				"label": "Timezone",
+				"default": "America/New_York"
+			}]
 		}
 	]
 }

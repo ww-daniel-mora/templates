@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  sonarr:
+    image: ghcr.io/linuxserver/sonarr
+    environment:
+      - PUID=${SONARR_PUID}
+      - PGID=${SONARR_PGID}
+      - TZ=${SONARR_TZ}
+    volumes:
+      - /opt/sonarr/data:/config
+      - /media/bigdrive24.d/downloads.d/sonarr.d/tv.d:/tv
+      - /media/bigdrive24.d/downloads.d/sonarr.d:/downloads
+    networks:
+      - traefik-public
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.services.sonarr.loadbalancer.server.port=9696"
+        - "traefik.http.routers.sonarr.rule=Host(`${SONARR_FQDN}`)"
+        - "traefik.http.routers.sonarr.middlewares=authelia@docker"
+        - "traefik.http.routers.sonarr.tls=true"
+        - "traefik.http.routers.sonarr.entrypoints=websecure"
+networks:
+  traefik-public:
+    external: true
