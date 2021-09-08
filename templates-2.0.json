@@ -1069,8 +1069,8 @@
 			"description": "Plex brings together all the media that matters to you. Your personal collection will look beautiful alongside stellar streaming content. Enjoy Live TV & DVR, a growing catalog of great web shows, news, and podcasts. It's finally possible to enjoy all the media you love in a single app, on any device, no matter where you are.",
 			"notes": "Plex must run in standalone mode to for hardware transcoding. To connect this to traefik you must add routing to the file provider.",
 			"categories": [
-				"Plex",
-				"Media"
+				"plex",
+				"media"
 			],
 			"repository": {
 				"url": "https://github.com/ww-daniel-mora/templates",
