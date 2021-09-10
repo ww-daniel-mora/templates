@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  nzbget:
+    image: ghcr.io/linuxserver/nzbget
+    environment:
+      - PUID=${NZBGET_PUID}
+      - PGID=${NZBGET_PGID}
+      - TZ=${NZBGET_TZ}
+      - UMASK=002
+    volumes:
+      - /opt/nzbget/data:/config
+      - /media/bigdrive24.d/plex.d/usenet:/data/usenet
+    networks:
+      - traefik-public
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.services.nzbget.loadbalancer.server.port=6789"
+        - "traefik.http.routers.nzbget.rule=Host(`${NZBGET_FQDN}`)"
+        - "traefik.http.routers.nzbget.middlewares=authelia@docker"
+        - "traefik.http.routers.nzbget.tls=true"
+        - "traefik.http.routers.nzbget.entrypoints=websecure"
+networks:
+  traefik-public:
+    external: true

@@ -1313,6 +1313,32 @@
 				"label": "Timezone",
 				"default": "America/New_York"
 			}]
+		},
+		{
+			"type": 2,
+			"title": "NZBGet",
+			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/nzbget.png",
+			"repository": {
+				"url": "https://github.com/ww-daniel-mora/templates",
+				"stackfile": "stacks/arr/nzbget-stack.yml"
+			},
+			"description": "NZBGet is a binary downloader, which downloads files from Usenet based on information given in nzb-files.",
+			"categories": ["media"],
+			"env": [{
+				"name": "NZBGET_FQDN",
+				"label": "FQDN",
+				"default": "nzbget.example.com"
+			},{
+				"name": "NZBGET_PUID",
+				"label": "User Id"
+			},{
+				"name": "NZBGET_PGID",
+				"label": "Group Id"
+			},{
+				"name": "NZBGET_TZ",
+				"label": "Timezone",
+				"default": "America/New_York"
+			}]
 		}
 	]
 }

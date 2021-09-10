@@ -6,6 +6,7 @@ services:
       - PUID=${PROWLARR_PUID}
       - PGID=${PROWLARR_PGID}
       - TZ=${PROWLARR_TZ}
+      - UMASK=002
     volumes:
       - /opt/prowlarr/data:/config
     networks:
