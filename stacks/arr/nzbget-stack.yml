@@ -9,7 +9,7 @@ services:
       - UMASK=002
     volumes:
       - /opt/nzbget/data:/config
-      - /media/bigdrive24.d/plex.d/usenet:/data/usenet
+      - /media/bigdrive24.d/plex.d/usenet.d:/data/usenet
     networks:
       - traefik-public
     deploy:
