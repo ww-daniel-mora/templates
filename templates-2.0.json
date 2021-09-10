@@ -1342,6 +1342,32 @@
 		},
 		{
 			"type": 2,
+			"title": "Overseerr",
+			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/overseerr.svg",
+			"repository": {
+				"url": "https://github.com/ww-daniel-mora/templates",
+				"stackfile": "stacks/arr/overseerr-stack.yml"
+			},
+			"description": "Overseerr is a request management and media discovery tool built to work with your existing Plex ecosystem.",
+			"categories": ["media"],
+			"env": [{
+				"name": "OVERSEERR_FQDN",
+				"label": "FQDN",
+				"default": "overseerr.example.com"
+			},{
+				"name": "OVERSEERR_PUID",
+				"label": "User Id"
+			},{
+				"name": "OVERSEERR_PGID",
+				"label": "Group Id"
+			},{
+				"name": "OVERSEERR_TZ",
+				"label": "Timezone",
+				"default": "America/New_York"
+			}]
+		},
+		{
+			"type": 2,
 			"title": "NZBGet",
 			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/nzbget.png",
 			"repository": {
