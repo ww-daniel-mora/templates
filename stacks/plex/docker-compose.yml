@@ -1,6 +1,6 @@
 # Plex must run as a standalone container due to the need for device mapping
 # wich is not currently supported by docker stacks to route this with traefik
-# in swarm mode you mush configure it via the file provider
+# in swarm mode you must configure it via the file provider
 version: "3.7"
 services:
   plex:
