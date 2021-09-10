@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  overseerr:
+    image: ghcr.io/linuxserver/overseerr
+    environment:
+      - PUID=${OVERSEERR_PUID}
+      - PGID=${OVERSEERR_PGID}
+      - TZ=${OVERSEERR_TZ}
+      - UMASK=002
+    volumes:
+      - /opt/overseerr/config:/config
+    networks:
+      - traefik-public
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.services.overseerr.loadbalancer.server.port=5055"
+        - "traefik.http.routers.overseerr.rule=Host(`${OVERSEERR_FQDN}`)"
+        - "traefik.http.routers.overseerr.middlewares=authelia@docker"
+        - "traefik.http.routers.overseerr.tls=true"
+        - "traefik.http.routers.overseerr.entrypoints=websecure"
+networks:
+  traefik-public:
+    external: true
