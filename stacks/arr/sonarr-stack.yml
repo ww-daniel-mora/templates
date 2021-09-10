@@ -6,10 +6,10 @@ services:
       - PUID=${SONARR_PUID}
       - PGID=${SONARR_PGID}
       - TZ=${SONARR_TZ}
+      - UMASK=002
     volumes:
       - /opt/sonarr/data:/config
-      - /media/bigdrive24.d/downloads.d/sonarr.d/tv.d:/tv
-      - /media/bigdrive24.d/downloads.d/sonarr.d:/downloads
+      - /media/bigdrive24.d/plex.d:/data
     networks:
       - traefik-public
     deploy:
