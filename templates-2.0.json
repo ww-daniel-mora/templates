@@ -1316,6 +1316,32 @@
 		},
 		{
 			"type": 2,
+			"title": "Radarr",
+			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/radarr.png",
+			"repository": {
+				"url": "https://github.com/ww-daniel-mora/templates",
+				"stackfile": "stacks/arr/radarr-stack.yml"
+			},
+			"description": "Radarr is a movie collection manager for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new movies and will interface with clients and indexers to grab, sort, and rename them. It can also be configured to automatically upgrade the quality of existing files in the library when a better quality format becomes available.",
+			"categories": ["media"],
+			"env": [{
+				"name": "RADARR_FQDN",
+				"label": "FQDN",
+				"default": "radarr.example.com"
+			},{
+				"name": "RADARR_PUID",
+				"label": "User Id"
+			},{
+				"name": "RADARR_PGID",
+				"label": "Group Id"
+			},{
+				"name": "RADARR_TZ",
+				"label": "Timezone",
+				"default": "America/New_York"
+			}]
+		},
+		{
+			"type": 2,
 			"title": "NZBGet",
 			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/nzbget.png",
 			"repository": {

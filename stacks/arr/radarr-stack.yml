@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  radarr:
+    image: ghcr.io/linuxserver/radarr
+    environment:
+      - PUID=${RADARR_PUID}
+      - PGID=${RADARR_PGID}
+      - TZ=${RADARR_TZ}
+      - UMASK=002
+    volumes:
+      - /opt/radarr/data:/config
+      - /media/bigdrive24.d/plex.d:/data
+    networks:
+      - traefik-public
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.services.radarr.loadbalancer.server.port=7878"
+        - "traefik.http.routers.radarr.rule=Host(`${RADARR_FQDN}`)"
+        - "traefik.http.routers.radarr.middlewares=authelia@docker"
+        - "traefik.http.routers.radarr.tls=true"
+        - "traefik.http.routers.radarr.entrypoints=websecure"
+networks:
+  traefik-public:
+    external: true
