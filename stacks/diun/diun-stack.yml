@@ -1,0 +1,23 @@
+version: '3.8'
+secrets:
+  pushover-user-token:
+    external: true
+  pushover-diun-token:
+    external: true
+services:
+  diun:
+    image: crazymax/diun:latest
+    command: serve
+    volumes:
+      - /opt/diun/data:/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+       - TZ=America/New_York
+       - LOG_LEVEL=info
+       - DIUN_NOTIF_PUSHOVER_TOKENFILE=/run/secrets/pushover-diun-token
+       - DIUN_NOTIF_PUSHOVER_RECIPIENTFILE=/run/secrets/pushover-user-token
+       - "DIUN_WATCH_SCHEDULE=0 */6 * * *"
+       - DIUN_WATCH_FIRSTCHECKNOTIF=true
+       - DIUN_PROVIDERS_DOCKER=true
+       - DIUN_PROVIDERS_DOCKER_WATCHBYDEFAULT=true
+
