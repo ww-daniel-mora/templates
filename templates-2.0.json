@@ -1391,6 +1391,17 @@
 				"label": "Timezone",
 				"default": "America/New_York"
 			}]
+		},
+		{
+			"type": 2,
+			"title": "Docker Image Update Notifier",
+			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/diun.png",
+			"repository": {
+				"url": "https://github.com/ww-daniel-mora/templates",
+				"stackfile": "stacks/diun/diun-stack.yml"
+			},
+			"description": "Docker Image Update Notifier is a CLI application written in Go and delivered as a single executable (and a Docker image) to receive notifications when a Docker image is updated on a Docker registry.",
+			"categories": ["docker"]
 		}
 	]
 }
