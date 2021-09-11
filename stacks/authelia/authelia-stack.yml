@@ -35,7 +35,7 @@ services:
         # - AUTHELIA_SESSION_REDIS_PASSWORD_FILE=/run/secrets/authelia-redis-pw
       - AUTHELIA_IDENTITY_PROVIDERS_OIDC_ISSUER_PRIVATE_KEY_FILE=/run/secrets/authelia-oidc-pk
       - AUTHELIA_IDENTITY_PROVIDERS_OIDC_HMAC_SECRET_FILE=/run/secrets/authelia-hmac
-      
+
     deploy:
       labels:
         - 'traefik.enable=true'
