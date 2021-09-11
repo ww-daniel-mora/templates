@@ -11,6 +11,9 @@ services:
     volumes:
       - /opt/diun/data:/data
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    secrets:
+      - pushover-user-token
+      - pushover-diun-token
     environment:
        - TZ=America/New_York
        - LOG_LEVEL=info
