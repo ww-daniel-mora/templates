@@ -15,12 +15,17 @@ services:
       - pushover-user-token
       - pushover-diun-token
     environment:
-       - TZ=America/New_York
-       - LOG_LEVEL=info
-       - DIUN_NOTIF_PUSHOVER_TOKENFILE=/run/secrets/pushover-diun-token
-       - DIUN_NOTIF_PUSHOVER_RECIPIENTFILE=/run/secrets/pushover-user-token
-       - "DIUN_WATCH_SCHEDULE=0 */6 * * *"
-       - DIUN_WATCH_FIRSTCHECKNOTIF=true
-       - DIUN_PROVIDERS_DOCKER=true
-       - DIUN_PROVIDERS_DOCKER_WATCHBYDEFAULT=true
-
+      - TZ=America/New_York
+      - LOG_LEVEL=debug
+      - DIUN_NOTIF_PUSHOVER_TOKENFILE=/run/secrets/pushover-diun-token
+      - DIUN_NOTIF_PUSHOVER_RECIPIENTFILE=/run/secrets/pushover-user-token
+      - "DIUN_WATCH_SCHEDULE=0 */6 * * *"
+      - DIUN_WATCH_FIRSTCHECKNOTIF=true
+      - DIUN_PROVIDERS_DOCKER=true
+      - DIUN_PROVIDERS_SWARM=true
+      - DIUN_PROVIDERS_DOCKER_WATCHBYDEFAULT=true
+      - DIUN_PROVIDERS_SWARM_WATCHBYDEFAULT=true
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
