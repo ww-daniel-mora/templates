@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - /opt/home-assistant/config:/config
+      - /etc/localtime:/etc/localtime:ro
+    privileged: true
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.services.homeassistant.loadbalancer.server.port=8123"
+        - "traefik.http.routers.homeassistant.rule=Host(`${HOMEASSISTANT_FQDN}`)"
+        - "traefik.http.routers.homeassistant.middlewares=homeallowlist@file"
+        - "traefik.http.routers.homeassistant.tls=true"
+        - "traefik.http.routers.homeassistant.entrypoints=websecure"
