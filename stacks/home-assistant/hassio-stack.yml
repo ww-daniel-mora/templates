@@ -5,7 +5,8 @@ services:
     volumes:
       - /opt/home-assistant/config:/config
       - /etc/localtime:/etc/localtime:ro
-    privileged: true
+    networks:
+      - traefik-public
     deploy:
       labels:
         - "traefik.enable=true"
@@ -14,3 +15,6 @@ services:
         - "traefik.http.routers.homeassistant.middlewares=homeallowlist@file"
         - "traefik.http.routers.homeassistant.tls=true"
         - "traefik.http.routers.homeassistant.entrypoints=websecure"
+networks:
+  traefik-public:
+    external: true
