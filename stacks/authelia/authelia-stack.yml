@@ -61,7 +61,7 @@ services:
       - traefik-public
     environment:
       - TZ=America/New_York
-      
+
 networks:
   traefik-public:
     external: true

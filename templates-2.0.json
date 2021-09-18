@@ -1409,7 +1409,7 @@
 			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/home-assistant.svg",
 			"repository": {
 				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/diun/ha-stack.yml"
+				"stackfile": "stacks/home-assistant/hassio-stack.yml"
 			},
 			"description": "Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts. Perfect to run on a Raspberry Pi or a local server.",
 			"categories": ["automation"],
