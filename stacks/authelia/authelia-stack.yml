@@ -4,7 +4,7 @@ secrets:
     external: true
   authelia-session:
     external: true
-  authelia-oidc-pk:
+  authelia-oidc-private-key:
     external: true
   authelia-hmac:
     external: true
@@ -21,7 +21,7 @@ services:
     secrets:
       - authelia-jwt
       - authelia-session
-      - authelia-oidc-pk
+      - authelia-oidc-private-key
       - authelia-hmac
       - google-smtp-pw
     environment:
@@ -29,7 +29,7 @@ services:
       - AUTHELIA_JWT_SECRET_FILE=/run/secrets/authelia-jwt
       - AUTHELIA_SESSION_SECRET_FILE=/run/secrets/authelia-session
       - AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE=/run/secrets/google-smtp-pw
-      - AUTHELIA_IDENTITY_PROVIDERS_OIDC_ISSUER_PRIVATE_KEY_FILE=/run/secrets/authelia-oidc-pk
+      - AUTHELIA_IDENTITY_PROVIDERS_OIDC_ISSUER_PRIVATE_KEY_FILE=/run/secrets/authelia-oidc-private-key
       - AUTHELIA_IDENTITY_PROVIDERS_OIDC_HMAC_SECRET_FILE=/run/secrets/authelia-hmac
 
     deploy:
