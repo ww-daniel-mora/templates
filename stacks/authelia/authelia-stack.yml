@@ -8,7 +8,7 @@ secrets:
     external: true
   authelia-hmac:
     external: true
-  google-smtp-pw:
+  authelia-gmail-smtp-pw:
     external: true
 
 services:
@@ -23,12 +23,12 @@ services:
       - authelia-session
       - authelia-oidc-private-key
       - authelia-hmac
-      - google-smtp-pw
+      - authelia-gmail-smtp-pw
     environment:
       - TZ=America/New_York
       - AUTHELIA_JWT_SECRET_FILE=/run/secrets/authelia-jwt
       - AUTHELIA_SESSION_SECRET_FILE=/run/secrets/authelia-session
-      - AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE=/run/secrets/google-smtp-pw
+      - AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE=/run/secrets/authelia-gmail-smtp-pw
       - AUTHELIA_IDENTITY_PROVIDERS_OIDC_ISSUER_PRIVATE_KEY_FILE=/run/secrets/authelia-oidc-private-key
       - AUTHELIA_IDENTITY_PROVIDERS_OIDC_HMAC_SECRET_FILE=/run/secrets/authelia-hmac
 
