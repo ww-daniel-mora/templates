@@ -10,7 +10,7 @@ services:
       - wekan-db-dump:/dump
 
   wekan:
-    image: mora/wekan
+    image: wekanteam/wekan:v5.61
     networks:
       - traefik-public
     ports:
