@@ -50,7 +50,7 @@ services:
     secrets:
       - gcloud-dns-service-account
     environment:
-      - GOOGLE_APPLICATION_CREDENTIALS=/run/secrets/gcloud-dns-service-account
+      - GCE_SERVICE_ACCOUNT_FILE=/run/secrets/gcloud-dns-service-account
       - GCE_PROJECT=${GCE_PROJECT}
     deploy:
       placement:
