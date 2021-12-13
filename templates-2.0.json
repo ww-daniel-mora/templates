@@ -1342,6 +1342,32 @@
 		},
 		{
 			"type": 2,
+			"title": "Bazarr",
+			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/bazarr.png",
+			"repository": {
+				"url": "https://github.com/ww-daniel-mora/templates",
+				"stackfile": "stacks/arr/bazarr-stack.yml"
+			},
+			"description": "Bazarr is a companion application to Sonarr and Radarr that manages and downloads subtitles based on your requirements.",
+			"categories": ["media"],
+			"env": [{
+				"name": "BAZARR_FQDN",
+				"label": "FQDN",
+				"default": "bazarr.example.com"
+			},{
+				"name": "BAZARR_PUID",
+				"label": "User Id"
+			},{
+				"name": "BAZARR_PGID",
+				"label": "Group Id"
+			},{
+				"name": "BAZARR_TZ",
+				"label": "Timezone",
+				"default": "America/New_York"
+			}]
+		},
+		{
+			"type": 2,
 			"title": "Overseerr",
 			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/overseerr.svg",
 			"repository": {

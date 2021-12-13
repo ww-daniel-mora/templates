@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  bazarr:
+    image: ghcr.io/linuxserver/bazarr
+    environment:
+      - PUID=${BAZARR_PUID}
+      - PGID=${BAZARR_PGID}
+      - TZ=${BAZARR_TZ}
+      - UMASK=002
+    volumes:
+      - /opt/bazarr/data:/config
+      - /media/bigdrive24.d/plex.d:/data
+    networks:
+      - traefik-public
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.services.bazarr.loadbalancer.server.port=6767"
+        - "traefik.http.routers.bazarr.rule=Host(`${BAZARR_FQDN}`)"
+        - "traefik.http.routers.bazarr.middlewares=authelia@docker"
+        - "traefik.http.routers.bazarr.tls=true"
+        - "traefik.http.routers.bazarr.entrypoints=websecure"
+networks:
+  traefik-public:
+    external: true
