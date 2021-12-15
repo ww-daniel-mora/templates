@@ -64,7 +64,6 @@ services:
         - "traefik.http.routers.traefik.middlewares=authelia@docker"
         - "traefik.http.routers.traefik.tls=true"
         - "traefik.http.routers.traefik.entrypoints=web,websecure"
-        - "traefik.http.routers.traefik.tls.certresolver=dns-resolver"
 networks:
   traefik-public:
     external: true
