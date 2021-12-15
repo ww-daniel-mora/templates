@@ -26,6 +26,7 @@ services:
       - authelia-oidc-private-key
       - authelia-hmac
       - authelia-gmail-smtp-pw
+      - authelia-storage-encryption-key
     environment:
       - TZ=America/New_York
       - AUTHELIA_JWT_SECRET_FILE=/run/secrets/authelia-jwt
