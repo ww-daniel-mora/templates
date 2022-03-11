@@ -7,7 +7,7 @@ services:
       - traefik-public
     volumes:
       - /opt/wekan/data/db:/data/db
-      - /opt/wekan/db/dump:/dump
+      - /opt/wekan/data/dump:/dump
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
 
