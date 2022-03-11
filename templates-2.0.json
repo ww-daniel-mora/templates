@@ -1228,7 +1228,7 @@
 				"name": "ROOT_URL",
 				"label": "Root URL",
 				"description": "Root URL",
-				"default": "https://wekan.example.com"
+				"default": "wekan.example.com"
 			},{
 				"name": "MAIL_URL",
 				"label": "Mail URL",
@@ -1250,7 +1250,8 @@
 			},{
 				"name": "CORS",
 				"label": "CORS",
-				"description": "CORS authorized domains"
+				"description": "CORS authorized domains",
+				"default": "Access-Control-Allow-Origin: *.example.com"
 			},{
 				"name": "OAUTH2_CLIENT_ID",
 				"label": "OAuth Client Id"

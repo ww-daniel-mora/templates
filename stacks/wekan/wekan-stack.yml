@@ -6,8 +6,10 @@ services:
     networks:
       - traefik-public
     volumes:
-      - wekan-db:/data/db
-      - wekan-db-dump:/dump
+      - /opt/wekan/data/db:/data/db
+      - /opt/wekan/db/dump:/dump
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
 
   wekan:
     image: wekanteam/wekan:v5.61
@@ -19,7 +21,7 @@ services:
       - MONGO_URL=mongodb://wekandb:27017/wekan
       - ROOT_URL=${ROOT_URL}
       - MAIL_URL=${MAIL_URL}
-      - MAIL_FROM=Wekan Notifications <noreply.wekan@morastein.com>
+      - MAIL_FROM=Wekan Notifications <noreply.wekan@${ROOT_URL}>
       - MAIL_SERVICE=${MAIL_SERVICE}
       - MAIL_SERVICE_USER=${MAIL_SERVICE_USER}
       - MAIL_SERVICE_PASSWORD=${MAIL_SERVICE_PASSWORD}
@@ -64,7 +66,7 @@ services:
       #---------------------------------------------------------------
       # ==== CORS =====
       # CORS: Set Access-Control-Allow-Origin header.
-      - "CORS=Access-Control-Allow-Origin: *.morastein.com"
+      - "CORS=${CORS}"
       # CORS_ALLOW_HEADERS: Set Access-Control-Allow-Headers header.  "Authorization,Content-Type" is required for cross-origin use of the API.
       - CORS_ALLOW_HEADERS=Authorization,Content-Type
       # CORS_EXPOSE_HEADERS: Set Access-Control-Expose-Headers header.  This is not needed for typical CORS situations
@@ -120,6 +122,9 @@ services:
       #---------------------------------------------------------------------
     depends_on:
       - wekandb
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /opt/wekan/data:/data
     deploy:
       labels:
         - "traefik.enable=true"
@@ -128,11 +133,6 @@ services:
         - "traefik.http.routers.wekan.middlewares=authelia@docker"
         - "traefik.http.routers.wekan.tls=true"
         - "traefik.http.routers.wekan.entrypoints=websecure"
-volumes:
-  wekan-db:
-    driver: local
-  wekan-db-dump:
-    driver: local
 
 networks:
   traefik-public:
