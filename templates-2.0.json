@@ -1228,6 +1228,11 @@
 				"name": "ROOT_URL",
 				"label": "Root URL",
 				"description": "Root URL",
+				"default": "https://wekan.example.com"
+			},{
+				"name": "FQDN",
+				"label": "Wekan FQDN",
+				"description": "Wekan FQDN",
 				"default": "wekan.example.com"
 			},{
 				"name": "MAIL_URL",
