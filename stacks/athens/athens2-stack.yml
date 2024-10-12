@@ -1,0 +1,54 @@
+version: "3.8"
+services:
+  athens:
+    image: ghcr.io/athensresearch/athens:v2.0.0-beta.24
+    volumes:
+      - /opt/athens2/athens-data/logs:/srv/athens/logs
+    ports:
+      - 3011:3010
+    environment:
+      # Uses system env vars for settings if available.
+      # CONFIG_EDN is deep merged with the default config file.
+      - CONFIG_EDN=${CONFIG_EDN:-{}}
+    healthcheck:
+      test: curl -f localhost:3010/health-check
+      interval: 15s
+      timeout: 60s
+      retries: 10
+      start_period: 15s
+    networks:
+      - athens2
+
+  fluree:
+    image: fluree/ledger:1.0.0-beta17
+    volumes:
+      - /opt/athens2/athens-data/fluree:/var/lib/fluree
+    healthcheck:
+      test: curl -f localhost:8090/fdb/health
+      interval: 15s
+      timeout: 30s
+      retries: 3
+      start_period: 15s
+    networks:
+      - athens2
+
+  athens2-web:
+    image: athens-nginx
+    networks:
+      - traefik-public 
+      - athens2
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.services.athens2-web.loadbalancer.server.port=80"
+        - "traefik.http.routers.athens2-web.service=athens2-web"
+        - "traefik.http.routers.athens2-web.rule=Host(`notes.morastein.com`)"
+        - "traefik.http.routers.athens2-web.middlewares=authelia@docker"
+        - "traefik.http.routers.athens2-web.tls=true"
+        - "traefik.http.routers.athens2-web.entrypoints=websecure"
+
+networks:
+  traefik-public:
+    external: true
+  athens2:
+    driver: overlay

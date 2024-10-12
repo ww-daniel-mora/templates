@@ -39,19 +39,19 @@ services:
     deploy:
       labels:
         - 'traefik.enable=true'
-        - 'traefik.http.services.authelia.loadbalancer.server.port=9091'
         - 'traefik.http.routers.authelia.rule=Host(`${AUTHELIA_FQDN}`)'
+        - 'traefik.http.services.authelia.loadbalancer.server.port=9091'
         - 'traefik.http.routers.authelia.entrypoints=websecure'
-        - 'traefik.http.routers.authelia.middlewares=authelia-cors'
+        # - 'traefik.http.routers.authelia.middlewares=authelia-cors'
+        # - 'traefik.http.middlewares.authelia-cors.headers.accesscontrolalloworiginlist=*.morastein.com'
+        # - 'traefik.http.middlewares.authelia-cors.headers.addvaryheader=true'
         - 'traefik.http.routers.authelia.tls=true'
-        - 'traefik.http.middlewares.authelia-cors.headers.accesscontrolalloworiginlist=*.morastein.com'
-        - 'traefik.http.middlewares.authelia-cors.headers.addvaryheader=true'
-        - 'traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/verify?rd=https://${AUTHELIA_FQDN}'
-        - 'traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true'
-        - 'traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email'
-        - 'traefik.http.middlewares.authelia-basic.forwardauth.address=http://authelia:9091/api/verify?auth=basic'
-        - 'traefik.http.middlewares.authelia-basic.forwardauth.trustForwardHeader=true'
-        - 'traefik.http.middlewares.authelia-basic.forwardauth.authResponseHeaders=Remote-User, Remote-Groups, Remote-Name, Remote-Email'
+        - 'traefik.http.middlewares.authelia.forwardAuth.address=http://authelia:9091/api/authz/forward-auth'
+        - 'traefik.http.middlewares.authelia.forwardAuth.trustForwardHeader=true'
+        - 'traefik.http.middlewares.authelia.forwardAuth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email'
+        - 'traefik.http.middlewares.authelia-basic.forwardAuth.address=http://authelia:9091/api/verify?auth=basic'
+        - 'traefik.http.middlewares.authelia-basic.forwardAuth.trustForwardHeader=true'
+        - 'traefik.http.middlewares.authelia-basic.forwardAuth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email'
 
   redis:
     image: redis:alpine
