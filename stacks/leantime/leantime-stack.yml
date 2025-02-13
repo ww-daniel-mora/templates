@@ -9,6 +9,11 @@ services:
     networks:
       - leantime-net
     command: --character-set-server=UTF8MB4 --collation-server=UTF8MB4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'                # MySQL root password
+      MYSQL_DATABASE: leantime                        # Database name
+      MYSQL_USER: 'lean'                                # Database username
+      MYSQL_PASSWORD: '${MYSQL_PASSWORD}'                     # Database password
 
   leantime:
     image: leantime/leantime:latest
