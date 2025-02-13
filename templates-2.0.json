@@ -1,1455 +1,1689 @@
 {
-	"version": "2",
-	"templates": [{
-			"type": 1,
-			"title": "Registry",
-			"description": "Docker image registry",
-			"categories": [
-				"docker"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/registry.png",
-			"image": "registry:latest",
-			"ports": [
-				"5000/tcp"
-			],
-			"volumes": [{
-				"container": "/var/lib/registry"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "Nginx",
-			"description": "High performance web server",
-			"categories": [
-				"webserver"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/nginx.png",
-			"image": "nginx:latest",
-			"ports": [
-				"80/tcp",
-				"443/tcp"
-			],
-			"volumes": [{
-					"container": "/etc/nginx"
-				},
-				{
-					"container": "/usr/share/nginx/html"
-				}
-			]
-		},
-		{
-			"type": 1,
-			"title": "Httpd",
-			"description": "Open-source HTTP server",
-			"categories": [
-				"webserver"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/httpd.png",
-			"image": "httpd:latest",
-			"ports": [
-				"80/tcp"
-			],
-			"volumes": [{
-				"container": "/usr/local/apache2/htdocs/"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "Caddy",
-			"description": "HTTP/2 web server with automatic HTTPS",
-			"categories": [
-				"webserver"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/caddy.png",
-			"image": "abiosoft/caddy:latest",
-			"ports": [
-				"80/tcp",
-				"443/tcp",
-				"2015/tcp"
-			],
-			"volumes": [{
-				"container": "/root/.caddy"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "MySQL",
-			"description": "The most popular open-source database",
-			"categories": [
-				"database"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mysql.png",
-			"image": "mysql:latest",
-			"env": [{
-				"name": "MYSQL_ROOT_PASSWORD",
-				"label": "Root password"
-			}],
-			"ports": [
-				"3306/tcp"
-			],
-			"volumes": [{
-				"container": "/var/lib/mysql"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "MariaDB",
-			"description": "Performance beyond MySQL",
-			"categories": [
-				"database"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mariadb.png",
-			"image": "mariadb:latest",
-			"env": [{
-				"name": "MYSQL_ROOT_PASSWORD",
-				"label": "Root password"
-			}],
-			"ports": [
-				"3306/tcp"
-			],
-			"volumes": [{
-				"container": "/var/lib/mysql"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "PostgreSQL",
-			"description": "The most advanced open-source database",
-			"categories": [
-				"database"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/postgres.png",
-			"image": "postgres:latest",
-			"env": [{
-					"name": "POSTGRES_USER",
-					"label": "Superuser"
-				},
-				{
-					"name": "POSTGRES_PASSWORD",
-					"label": "Superuser password"
-				}
-			],
-			"ports": [
-				"5432/tcp"
-			],
-			"volumes": [{
-				"container": "/var/lib/postgresql/data"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "Mongo",
-			"description": "Open-source document-oriented database",
-			"categories": [
-				"database"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mongo.png",
-			"image": "mongo:latest",
-			"ports": [
-				"27017/tcp"
-			],
-			"volumes": [{
-				"container": "/data/db"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "CockroachDB",
-			"description": "An open-source, survivable, strongly consistent, scale-out SQL database",
-			"categories": [
-				"database"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/cockroachdb.png",
-			"image": "cockroachdb/cockroach:latest",
-			"ports": [
-				"26257/tcp",
-				"8080/tcp"
-			],
-			"volumes": [{
-				"container": "/cockroach/cockroach-data"
-			}],
-			"command": "start --insecure"
-		},
-		{
-			"type": 1,
-			"title": "CrateDB",
-			"description": "An open-source distributed SQL database",
-			"categories": [
-				"database"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/cratedb.png",
-			"image": "crate:latest",
-			"ports": [
-				"4200/tcp",
-				"4300/tcp"
-			],
-			"volumes": [{
-				"container": "/data"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "Elasticsearch",
-			"description": "Open-source search and analytics engine",
-			"categories": [
-				"database"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/elasticsearch.png",
-			"image": "elasticsearch:latest",
-			"ports": [
-				"9200/tcp",
-				"9300/tcp"
-			],
-			"volumes": [{
-				"container": "/usr/share/elasticsearch/data"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "Gitlab CE",
-			"description": "Open-source end-to-end software development platform",
-			"note": "Default username is <b>root</b>. Check the <a href=\"https://docs.gitlab.com/omnibus/docker/README.html#after-starting-a-container\" target=\"_blank\">Gitlab documentation</a> to get started.",
-			"categories": [
-				"development",
-				"project-management"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/gitlab_ce.png",
-			"image": "gitlab/gitlab-ce:latest",
-			"ports": [
-				"80/tcp",
-				"443/tcp",
-				"22/tcp"
-			],
-			"volumes": [{
-					"container": "/etc/gitlab"
-				},
-				{
-					"container": "/var/log/gitlab"
-				},
-				{
-					"container": "/var/opt/gitlab"
-				}
-			]
-		},
-		{
-			"type": 1,
-			"title": "Minio",
-			"description": "A distributed object storage server built for cloud applications and devops",
-			"categories": [
-				"storage"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/minio.png",
-			"image": "minio/minio:latest",
-			"ports": [
-				"9000/tcp"
-			],
-			"env": [{
-					"name": "MINIO_ACCESS_KEY",
-					"label": "Minio access key"
-				},
-				{
-					"name": "MINIO_SECRET_KEY",
-					"label": "Minio secret key"
-				}
-			],
-			"volumes": [{
-					"container": "/data"
-				},
-				{
-					"container": "/root/.minio"
-				}
-			],
-			"command": "server /data"
-		},
-		{
-			"type": 1,
-			"title": "Scality S3",
-			"description": "Standalone AWS S3 protocol server",
-			"categories": [
-				"storage"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/scality-s3.png",
-			"image": "scality/s3server",
-			"ports": [
-				"8000/tcp"
-			],
-			"env": [{
-					"name": "SCALITY_ACCESS_KEY",
-					"label": "Scality S3 access key"
-				},
-				{
-					"name": "SCALITY_SECRET_KEY",
-					"label": "Scality S3 secret key"
-				}
-			],
-			"volumes": [{
-					"container": "/usr/src/app/localData"
-				},
-				{
-					"container": "/usr/src/app/localMetadata"
-				}
-			]
-		},
-		{
-			"type": 1,
-			"title": "SQL Server",
-			"description": "Microsoft SQL Server on Linux",
-			"categories": [
-				"database"
-			],
-			"platform": "linux",
-			"note": "Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols.",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
-			"image": "microsoft/mssql-server-linux:2017-GA",
-			"ports": [
-				"1433/tcp"
-			],
-			"env": [{
-					"name": "ACCEPT_EULA",
-					"set": "Y"
-				},
-				{
-					"name": "SA_PASSWORD",
-					"label": "SA password"
-				}
-			]
-		},
-		{
-			"type": 1,
-			"title": "SQL Server",
-			"description": "Microsoft SQL Server Developer for Windows containers",
-			"categories": [
-				"database"
-			],
-			"platform": "windows",
-			"note": "Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols.",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
-			"image": "microsoft/mssql-server-windows-developer:latest",
-			"ports": [
-				"1433/tcp"
-			],
-			"env": [{
-					"name": "ACCEPT_EULA",
-					"set": "Y"
-				},
-				{
-					"name": "sa_password",
-					"label": "SA password"
-				}
-			],
-			"volumes": [{
-				"container": "C:/temp/"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "SQL Server Express",
-			"description": "Microsoft SQL Server Express for Windows containers",
-			"categories": [
-				"database"
-			],
-			"platform": "windows",
-			"note": "Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols.",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
-			"image": "microsoft/mssql-server-windows-express:latest",
-			"ports": [
-				"1433/tcp"
-			],
-			"env": [{
-					"name": "ACCEPT_EULA",
-					"set": "Y"
-				},
-				{
-					"name": "sa_password",
-					"label": "SA password"
-				}
-			],
-			"volumes": [{
-				"container": "C:/temp/"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "IronFunctions API",
-			"description": "Open-source serverless computing platform",
-			"categories": [
-				"serverless"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ironfunctions.png",
-			"image": "iron/functions:latest",
-			"ports": [
-				"8080/tcp"
-			],
-			"volumes": [{
-				"container": "/app/data"
-			}],
-			"privileged": true
-		},
-		{
-			"type": 1,
-			"title": "IronFunctions UI",
-			"description": "Open-source user interface for IronFunctions",
-			"categories": [
-				"serverless"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ironfunctions.png",
-			"image": "iron/functions-ui:latest",
-			"ports": [
-				"4000/tcp"
-			],
-			"volumes": [{
-				"container": "/app/data"
-			}],
-			"env": [{
-				"name": "API_URL",
-				"label": "API URL"
-			}],
-			"privileged": true
-		},
-		{
-			"type": 1,
-			"title": "Solr",
-			"description": "Open-source enterprise search platform",
-			"categories": [
-				"search-engine"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/solr.png",
-			"image": "solr:latest",
-			"ports": [
-				"8983/tcp"
-			],
-			"volumes": [{
-				"container": "/opt/solr/mydata"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "Redis",
-			"description": "Open-source in-memory data structure store",
-			"categories": [
-				"database"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/redis.png",
-			"image": "redis:latest",
-			"ports": [
-				"6379/tcp"
-			],
-			"volumes": [{
-				"container": "/data"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "RabbitMQ",
-			"description": "Highly reliable enterprise messaging system",
-			"categories": [
-				"messaging"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/rabbitmq.png",
-			"image": "rabbitmq:latest",
-			"ports": [
-				"5671/tcp",
-				"5672/tcp"
-			],
-			"volumes": [{
-				"container": "/var/lib/rabbitmq"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "Ghost",
-			"description": "Free and open-source blogging platform",
-			"categories": [
-				"blog"
-			],
-			"note": "Access the blog management interface under <code>/ghost/</code>.",
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ghost.png",
-			"image": "ghost:latest",
-			"ports": [
-				"2368/tcp"
-			],
-			"volumes": [{
-				"container": "/var/lib/ghost/content"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "Plesk",
-			"description": "WebOps platform and hosting control panel",
-			"categories": [
-				"CMS"
-			],
-			"platform": "linux",
-			"note": "Default credentials: admin / changeme",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/plesk.png",
-			"image": "plesk/plesk:latest",
-			"ports": [
-				"21/tcp",
-				"80/tcp",
-				"443/tcp",
-				"8880/tcp",
-				"8443/tcp",
-				"8447/tcp"
-			]
-		},
-		{
-			"type": 1,
-			"title": "Joomla",
-			"description": "Another free and open-source CMS",
-			"categories": [
-				"CMS"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/joomla.png",
-			"image": "joomla:latest",
-			"env": [{
-					"name": "JOOMLA_DB_HOST",
-					"label": "MySQL database host",
-					"type": "container"
-				},
-				{
-					"name": "JOOMLA_DB_PASSWORD",
-					"label": "Database password"
-				}
-			],
-			"ports": [
-				"80/tcp"
-			],
-			"volumes": [{
-				"container": "/var/www/html"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "Drupal",
-			"description": "Open-source content management framework",
-			"categories": [
-				"CMS"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/drupal.png",
-			"image": "drupal:latest",
-			"ports": [
-				"80/tcp"
-			],
-			"volumes": [{
-				"container": "/var/www/html"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "Plone",
-			"description": "A free and open-source CMS built on top of Zope",
-			"categories": [
-				"CMS"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/plone.png",
-			"image": "plone:latest",
-			"ports": [
-				"8080/tcp"
-			],
-			"volumes": [{
-				"container": "/data"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "Magento 2",
-			"description": "Open-source e-commerce platform",
-			"categories": [
-				"CMS"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/magento.png",
-			"image": "alankent/gsd:latest",
-			"ports": [
-				"80/tcp",
-				"3000/tcp",
-				"3001/tcp"
-			],
-			"volumes": [{
-				"container": "/var/www/html/"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "Sematext Docker Agent",
-			"description": "Collect logs, metrics and docker events",
-			"categories": [
-				"Log Management",
-				"Monitoring"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/sematext_agent.png",
-			"image": "sematext/sematext-agent-docker:latest",
-			"name": "sematext-agent",
-			"privileged": true,
-			"env": [{
-					"name": "LOGSENE_TOKEN",
-					"label": "Logs token"
-				},
-				{
-					"name": "SPM_TOKEN",
-					"label": "SPM monitoring token"
-				}
-			],
-			"volumes": [{
-				"container": "/var/run/docker.sock",
-				"bind": "/var/run/docker.sock"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "Datadog agent",
-			"description": "Collect events and metrics",
-			"categories": [
-				"Monitoring"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/datadog_agent.png",
-			"image": "datadog/agent:latest",
-			"env": [{
-				"name": "DD_API_KEY",
-				"label": "Datadog API key"
-			}],
-			"volumes": [{
-					"container": "/var/run/docker.sock",
-					"bind": "/var/run/docker.sock",
-					"readonly": true
-				},
-				{
-					"container": "/host/sys/fs/cgroup",
-					"bind": "/sys/fs/cgroup",
-					"readonly": true
-				},
-				{
-					"container": "/host/proc",
-					"bind": "/proc",
-					"readonly": true
-				}
-			]
-		},
-		{
-			"type": 1,
-			"title": "Mautic",
-			"description": "Open-source marketing automation platform",
-			"categories": [
-				"marketing"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mautic.png",
-			"image": "mautic/mautic:latest",
-			"env": [{
-					"name": "MAUTIC_DB_HOST",
-					"label": "MySQL database host",
-					"type": "container"
-				},
-				{
-					"name": "MAUTIC_DB_PASSWORD",
-					"label": "Database password"
-				}
-			],
-			"ports": [
-				"80/tcp"
-			],
-			"volumes": [{
-				"container": "/var/www/html"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "Wowza",
-			"description": "Streaming media server",
-			"categories": [
-				"streaming"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wowza.png",
-			"image": "sameersbn/wowza:4.1.2-8",
-			"env": [{
-					"name": "WOWZA_ACCEPT_LICENSE",
-					"label": "Agree to Wowza EULA",
-					"set": "yes"
-				},
-				{
-					"name": "WOWZA_KEY",
-					"label": "License key"
-				}
-			],
-			"ports": [
-				"1935/tcp",
-				"8086/tcp",
-				"8087/tcp",
-				"8088/tcp"
-			],
-			"volumes": [{
-				"container": "/var/lib/wowza"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "Jenkins",
-			"description": "Open-source continuous integration tool",
-			"categories": [
-				"continuous-integration"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/jenkins.png",
-			"image": "jenkins/jenkins:lts",
-			"ports": [
-				"8080/tcp",
-				"50000/tcp"
-			],
-			"env": [{
-				"name": "JENKINS_OPTS",
-				"label": "Jenkins options"
-			}],
-			"volumes": [{
-				"container": "/var/jenkins_home"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "Redmine",
-			"description": "Open-source project management tool",
-			"categories": [
-				"project-management"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/redmine.png",
-			"image": "redmine:latest",
-			"ports": [
-				"3000/tcp"
-			],
-			"volumes": [{
-				"container": "/usr/src/redmine/files"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "Odoo",
-			"description": "Open-source business apps",
-			"categories": [
-				"project-management"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/odoo.png",
-			"image": "odoo:latest",
-			"env": [{
-					"name": "HOST",
-					"label": "PostgreSQL database host",
-					"type": "container"
-				},
-				{
-					"name": "USER",
-					"label": "Database user"
-				},
-				{
-					"name": "PASSWORD",
-					"label": "Database password"
-				}
-			],
-			"ports": [
-				"8069/tcp"
-			],
-			"volumes": [{
-					"container": "/var/lib/odoo"
-				},
-				{
-					"container": "/mnt/extra-addons"
-				}
-			]
-		},
-		{
-			"type": 1,
-			"title": "Urbackup",
-			"description": "Open-source network backup",
-			"categories": [
-				"backup"
-			],
-			"platform": "linux",
-			"note": "This application web interface is exposed on the port 55414 inside the container.",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/urbackup.png",
-			"image": "cfstras/urbackup",
-			"ports": [
-				"55413/tcp",
-				"55414/tcp",
-				"55415/tcp",
-				"35622/tcp"
-			],
-			"volumes": [{
-				"container": "/var/urbackup"
-			}]
-		},
-		{
-			"type": 1,
-			"title": "File browser",
-			"description": "A web file manager",
-			"note": "Default credentials: admin/admin",
-			"categories": [
-				"filesystem",
-				"storage"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/filebrowser.png",
-			"image": "filebrowser/filebrowser:latest",
-			"ports": [
-				"80/tcp"
-			],
-			"volumes": [{
-					"container": "/data"
-				},
-				{
-					"container": "/srv"
-				}
-			],
-			"command": "--port 80 --database /data/database.db --root /srv"
-		},
-		{
-			"type": 1,
-			"title": "CommandBox",
-			"description": "ColdFusion (CFML) CLI",
-			"categories": [
-				"development"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ortussolutions-commandbox.png",
-			"image": "ortussolutions/commandbox:latest",
-			"env": [{
-				"name": "CFENGINE",
-				"set": "lucee@4.5"
-			}],
-			"ports": [
-				"8080/tcp",
-				"8443/tcp"
-			]
-		},
-		{
-			"type": 1,
-			"title": "ContentBox",
-			"description": "Open-source modular CMS",
-			"categories": [
-				"CMS"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ortussolutions-contentbox.png",
-			"image": "ortussolutions/contentbox:latest",
-			"env": [{
-					"name": "express",
-					"set": "true"
-				},
-				{
-					"name": "install",
-					"set": "true"
-				},
-				{
-					"name": "CFENGINE",
-					"set": "lucee@4.5"
-				}
-			],
-			"ports": [
-				"8080/tcp",
-				"8443/tcp"
-			],
-			"volumes": [{
-					"container": "/data/contentbox/db"
-				},
-				{
-					"container": "/app/includes/shared/media"
-				}
-			]
-		},
-		{
-			"type": 2,
-			"title": "Portainer Agent",
-			"description": "Manage all the resources in your Swarm cluster",
-			"note": "The agent will be deployed globally inside your cluster and available on port 9001.",
-			"categories": [
-				"portainer"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/portainer.png",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/portainer-agent/docker-stack.yml"
-			}
-		},
-		{
-			"type": 2,
-			"title": "OpenFaaS",
-			"name": "func",
-			"description": "Serverless functions made simple",
-			"note": "Deploys the API gateway and sample functions. You can access the UI on port 8080. <b>Warning</b>: the name of the stack must be 'func'.",
-			"categories": [
-				"serverless"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/openfaas.png",
-			"repository": {
-				"url": "https://github.com/openfaas/faas",
-				"stackfile": "docker-compose.yml"
-			}
-		},
-		{
-			"type": 2,
-			"title": "IronFunctions",
-			"description": "Open-source serverless computing platform",
-			"note": "Deploys the IronFunctions API and UI.",
-			"categories": [
-				"serverless"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ironfunctions.png",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/ironfunctions/docker-stack.yml"
-			}
-		},
-		{
-			"type": 2,
-			"title": "CockroachDB",
-			"description": "CockroachDB cluster",
-			"note": "Deploys an insecure CockroachDB cluster, please refer to <a href=\"https://www.cockroachlabs.com/docs/stable/orchestrate-cockroachdb-with-docker-swarm.html\" target=\"_blank\">CockroachDB documentation</a> for production deployments.",
-			"categories": [
-				"database"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/cockroachdb.png",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/cockroachdb/docker-stack.yml"
-			}
-		},
-		{
-			"type": 2,
-			"title": "Wordpress",
-			"description": "Wordpress setup with a MySQL database",
-			"note": "Deploys a Wordpress instance connected to a MySQL database.",
-			"categories": [
-				"CMS"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/wordpress/docker-stack.yml"
-			},
-			"env": [{
-				"name": "MYSQL_DATABASE_PASSWORD",
-				"label": "Database root password",
-				"description": "Password used by the MySQL root user."
-			}]
-		},
-		{
-			"type": 3,
-			"title": "Wordpress",
-			"description": "Wordpress setup with a MySQL database",
-			"note": "Deploys a Wordpress instance connected to a MySQL database.",
-			"categories": [
-				"CMS"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/wordpress/docker-compose.yml"
-			},
-			"env": [{
-				"name": "MYSQL_DATABASE_PASSWORD",
-				"label": "Database root password",
-				"description": "Password used by the MySQL root user."
-			}]
-		},
-		{
-			"type": 2,
-			"title": "Microsoft OMS Agent",
-			"description": "Microsoft Operations Management Suite Linux agent.",
-			"categories": [
-				"OPS"
-			],
-			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/microsoft-oms/docker-stack.yml"
-			},
-			"env": [{
-					"name": "AZURE_WORKSPACE_ID",
-					"label": "Workspace ID",
-					"description": "Azure Workspace ID"
-				},
-				{
-					"name": "AZURE_PRIMARY_KEY",
-					"label": "Primary key",
-					"description": "Azure primary key"
-				}
-			]
-		},
-		{
-			"title": "Sematext Docker Agent",
-			"type": 2,
-			"categories": [
-				"Log Management",
-				"Monitoring"
-			],
-			"description": "Collect logs, metrics and docker events",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/sematext_agent.png",
-			"platform": "linux",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/sematext-agent-docker/docker-stack.yml"
-			},
-			"env": [{
-					"name": "LOGSENE_TOKEN",
-					"label": "Logs token"
-				},
-				{
-					"name": "SPM_TOKEN",
-					"label": "SPM monitoring token"
-				}
-			]
-		},
-		{
-			"title": "Datadog agent",
-			"type": 2,
-			"categories": [
-				"Monitoring"
-			],
-			"description": "Collect events and metrics",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/datadog_agent.png",
-			"platform": "linux",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/datadog-agent/docker-stack.yml"
-			},
-			"env": [{
-				"name": "API_KEY",
-				"label": "Datadog API key"
-			}]
-		},
-		{
-			"type": 4,
-			"title": "Wordpress",
-			"description": "Wordpress setup with a MySQL database",
-			"note": "Deploys a Wordpress instance connected to a MySQL database.",
-			"stackfile": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/stacks/wordpress/edge/docker-stack.yml"
-		},
-		{
-			"type": 4,
-			"title": "CockroachDB",
-			"description": "CockroachDB cluster",
-			"note": "Deploys an insecure CockroachDB cluster, please refer to <a href=\"https://www.cockroachlabs.com/docs/stable/orchestrate-cockroachdb-with-docker-swarm.html\" target=\"_blank\">CockroachDB documentation</a> for production deployments.",
-			"stackfile": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/stacks/cockroachdb/edge/docker-stack.yml"
-		},
-		{
-			"type": 3,
-			"title": "Plex",
-			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/plex.png",
-			"description": "Plex brings together all the media that matters to you. Your personal collection will look beautiful alongside stellar streaming content. Enjoy Live TV & DVR, a growing catalog of great web shows, news, and podcasts. It's finally possible to enjoy all the media you love in a single app, on any device, no matter where you are.",
-			"notes": "Plex must run in standalone mode to for hardware transcoding. To connect this to traefik you must add routing to the file provider.",
-			"categories": [
-				"plex",
-				"media"
-			],
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/plex/docker-compose.yml"
-			},
-			"env": [{
-				"name": "PLEX_FQDN",
-				"label": "Plex FQDN",
-				"default": "plex.exmaple.com"
-			},{
-				"name": "PLEX_TZ",
-				"label": "Time Zone",
-				"default": "America/New_York"
-			},{
-				"name": "PLEX_UID",
-				"label": "Plex User Id"
-			},{
-				"name": "PLEX_GID",
-				"label": "Plex Group Id"
-			},{
-				"name": "PLEX_CLAIM",
-				"label": "Plex Claim"
-			}]
-		},
-		{
-			"type": 2,
-			"title": "MovieMatch",
-			"description":"Have you ever spent longer deciding on a movie than it'd take to just watch a random movie? This is an app that helps you and your friends pick a movie to watch from a Plex server.",
-			"note": "Deploys a MovieMatch server connected to traefik. You must first configure DNS entrires before deploying this stack",
-			"categories": [
-				"Plex",
-				"Media"
-			],
-			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/moviematch.jpeg",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/plex/moviematch/moviematch-stack.yml"
-			},
-			"env": [{
-				"name": "PLEX_URL",
-				"label": "URL for Plex",
-				"description": "The URL for you Plex instance",
-				"default": "https://plex.example.com"
-			},{
-				"name": "PLEX_TOKEN",
-				"label": "Plex Token"
-			},{
-				"name": "MOVIE_MATCH_LOG_LEVEL",
-				"label": "Log level",
-				"description": "The Log level for Movie Match",
-				"select": [{
-					"text": "INFO",
-					"value": "INFO",
-					"default": true
-				},{
-					"text": "DEBUG",
-					"value": "DEBUG"
-				},{
-					"text": "WARNING",
-					"value": "WARNING"
-				},{
-					"text": "ERROR",
-					"value": "ERROR"
-				},{
-					"text": "CRITICAL",
-					"value": "CRITICAL"
-				}]
-			},{
-				"name": "MOVIE_MATCH_LIBRARY_FILTER",
-				"label": "Library filter",
-				"description": "Libraries to include in matching",
-				"default": "Movies, TV Shows"
-			},{
-				"name": "MOVIE_MATCH_FQDN",
-				"label": "Movie Match FQDN",
-				"description": "Ensure that this will resolve to the host machine prior to deploying this stack",
-				"default": "moviematch.example.com"
-			}]
-		},
-		{
-			"type": 2,
-			"title": "traefik",
-			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/traefik.png",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/traefik/traefik-stack.yml"
-			},
-			"description": "Traefik is a leading modern reverse proxy and load balancer that makes deploying microservices easy. Traefik integrates with your existing infrastructure components and configures itself automatically and dynamically.",
-			"categories": ["reverse-proxy"],
-			"env": [{
-				"name": "TRAEFIK_FQDN",
-				"label": "Traefik FQDN",
-				"description": "The FQDN to use for Traefik",
-				"default": "traefik.example.com"
-			},{
-				"name": "ACME_EMAIL",
-				"label": "ACME E-Mail",
-				"description": "The email address used to communicate with letsencrypte.",
-				"default": "youname@yourdomain.com"
-			},{
-				"name": "TRAEFIK_LE_DIR",
-				"label": "letsencrypt directory",
-				"description": "Storage for certificates from letsencrypt.",
-				"default": "/opt/traefik/letsencrypt"
-			},{
-				"name": "TRAEFIK_CONFIG_DIR",
-				"label": "Config directory",
-				"description": "Directory with configuration files for traefik.",
-				"default": "/opt/traefik/config"
-			},{
-				"name": "GCE_PROJECT",
-				"label": "GCE Project",
-				"description": "Google Cloud project name"
-			}]
-		},
-		{
-			"type": 2,
-			"title": "Authelia",
-			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/authelia.png",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/authelia/authelia-stack.yml"
-			},
-			"description": "Protect your applications with Single Sign-On and 2 Factor. Authelia is an open-source full-featured authentication server available on Github.",
-			"categories": ["authentication"],
-			"env": [{
-				"name": "AUTHELIA_FQDN",
-				"label": "Authelia FQDN",
-				"description": "The FQDN to use for Authelia",
-				"default": "auth.example.com"
-			},{
-				"name": "AUTHELIA_CONFIG_DIR",
-				"label": "Config directory",
-				"description": "Directory with config.yml file for Authelia",
-				"default": "/opt/authelia/config"
-			},{
-				"name": "AUTHELIA_REDIS_DATA_DIR",
-				"label": "Redis data directory",
-				"description": "Directory for Redsi",
-				"default": "/opt/authelia/redis"
-			}]
-
-		},
-		{
-			"type": 2,
-			"title": "Wekan",
-			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/wekan.png",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/wekan/wekan-stack.yml"
-			},
-			"description": "Wekan is an open-source kanban board which allows a card-based task and to-do management.",
-			"categories": ["Project Management"],
-			"env": [{
-				"name": "ROOT_URL",
-				"label": "Root URL",
-				"description": "Root URL",
-				"default": "https://wekan.example.com"
-			},{
-				"name": "FQDN",
-				"label": "Wekan FQDN",
-				"description": "Wekan FQDN",
-				"default": "wekan.example.com"
-			},{
-				"name": "MAIL_URL",
-				"label": "Mail URL",
-				"description": "Mail send url",
-				"default": "smtps://smtp.gmail.com:587"
-			},{
-				"name": "MAIL_SERVICE",
-				"label": "Mail Service",
-				"description": "Mail service name",
-				"default": "GMail"
-			},{
-				"name": "MAIL_SERVICE_USER",
-				"label": "Mail service user",
-				"description": "Mail service user name"
-			},{
-				"name": "MAIL_SERVICE_PASSWORD",
-				"label": "Mail service password",
-				"description": "Mail service app password"
-			},{
-				"name": "CORS",
-				"label": "CORS",
-				"description": "CORS authorized domains",
-				"default": "Access-Control-Allow-Origin: *.example.com"
-			},{
-				"name": "OAUTH2_CLIENT_ID",
-				"label": "OAuth Client Id"
-			},{
-				"name": "OAUTH2_SECRET",
-				"label": "OAuth secret"
-			},{
-				"name": "OAUTH2_SERVER_URL",
-				"label": "OAuth2 server URL"
-			}]
-		},
-		{
-			"type": 2,
-			"title": "Prowlarr",
-			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/prowlarr.png",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/arr/prowlarr-stack.yml"
-			},
-			"description": "Prowlarr is an indexer manager/proxy built on the popular arr .net/reactjs base stack to integrate with your various PVR apps. Prowlarr supports management of both Torrent Trackers and Usenet Indexers. It integrates seamlessly with Lidarr, Mylar3, Radarr, Readarr, and Sonarr offering complete management of your indexers with no per app Indexer setup required (we do it all).",
-			"categories": ["media"],
-			"env": [{
-				"name": "PROWLARR_FQDN",
-				"label": "FQDN",
-				"default": "prowlarr.example.com"
-			},{
-				"name": "PROWLARR_PUID",
-				"label": "User Id"
-			},{
-				"name": "PROWLARR_PGID",
-				"label": "Group Id"
-			},{
-				"name": "PROWLARR_TZ",
-				"label": "Timezone",
-				"default": "America/New_York"
-			}]
-		},
-		{
-			"type": 2,
-			"title": "Sonarr",
-			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/sonarr.png",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/arr/sonarr-stack.yml"
-			},
-			"description": "Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.",
-			"categories": ["media"],
-			"env": [{
-				"name": "SONARR_FQDN",
-				"label": "FQDN",
-				"default": "sonarr.example.com"
-			},{
-				"name": "SONARR_PUID",
-				"label": "User Id"
-			},{
-				"name": "SONARR_PGID",
-				"label": "Group Id"
-			},{
-				"name": "SONARR_TZ",
-				"label": "Timezone",
-				"default": "America/New_York"
-			}]
-		},
-		{
-			"type": 2,
-			"title": "Radarr",
-			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/radarr.png",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/arr/radarr-stack.yml"
-			},
-			"description": "Radarr is a movie collection manager for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new movies and will interface with clients and indexers to grab, sort, and rename them. It can also be configured to automatically upgrade the quality of existing files in the library when a better quality format becomes available.",
-			"categories": ["media"],
-			"env": [{
-				"name": "RADARR_FQDN",
-				"label": "FQDN",
-				"default": "radarr.example.com"
-			},{
-				"name": "RADARR_PUID",
-				"label": "User Id"
-			},{
-				"name": "RADARR_PGID",
-				"label": "Group Id"
-			},{
-				"name": "RADARR_TZ",
-				"label": "Timezone",
-				"default": "America/New_York"
-			}]
-		},
-		{
-			"type": 2,
-			"title": "Bazarr",
-			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/bazarr.png",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/arr/bazarr-stack.yml"
-			},
-			"description": "Bazarr is a companion application to Sonarr and Radarr that manages and downloads subtitles based on your requirements.",
-			"categories": ["media"],
-			"env": [{
-				"name": "BAZARR_FQDN",
-				"label": "FQDN",
-				"default": "bazarr.example.com"
-			},{
-				"name": "BAZARR_PUID",
-				"label": "User Id"
-			},{
-				"name": "BAZARR_PGID",
-				"label": "Group Id"
-			},{
-				"name": "BAZARR_TZ",
-				"label": "Timezone",
-				"default": "America/New_York"
-			}]
-		},
-		{
-			"type": 2,
-			"title": "Overseerr",
-			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/overseerr.svg",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/arr/overseerr-stack.yml"
-			},
-			"description": "Overseerr is a request management and media discovery tool built to work with your existing Plex ecosystem.",
-			"categories": ["media"],
-			"env": [{
-				"name": "OVERSEERR_FQDN",
-				"label": "FQDN",
-				"default": "overseerr.example.com"
-			},{
-				"name": "OVERSEERR_PUID",
-				"label": "User Id"
-			},{
-				"name": "OVERSEERR_PGID",
-				"label": "Group Id"
-			},{
-				"name": "OVERSEERR_TZ",
-				"label": "Timezone",
-				"default": "America/New_York"
-			}]
-		},
-		{
-			"type": 2,
-			"title": "NZBGet",
-			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/nzbget.png",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/arr/nzbget-stack.yml"
-			},
-			"description": "NZBGet is a binary downloader, which downloads files from Usenet based on information given in nzb-files.",
-			"categories": ["media"],
-			"env": [{
-				"name": "NZBGET_FQDN",
-				"label": "FQDN",
-				"default": "nzbget.example.com"
-			},{
-				"name": "NZBGET_PUID",
-				"label": "User Id"
-			},{
-				"name": "NZBGET_PGID",
-				"label": "Group Id"
-			},{
-				"name": "NZBGET_TZ",
-				"label": "Timezone",
-				"default": "America/New_York"
-			}]
-		},
-		{
-			"type": 2,
-			"title": "Docker Image Update Notifier",
-			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/diun.png",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/diun/diun-stack.yml"
-			},
-			"description": "Docker Image Update Notifier is a CLI application written in Go and delivered as a single executable (and a Docker image) to receive notifications when a Docker image is updated on a Docker registry.",
-			"categories": ["docker"]
-		},
-		{
-			"type": 2,
-			"title": "Home Assistant",
-			"logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/home-assistant.svg",
-			"repository": {
-				"url": "https://github.com/ww-daniel-mora/templates",
-				"stackfile": "stacks/home-assistant/hassio-stack.yml"
-			},
-			"description": "Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts. Perfect to run on a Raspberry Pi or a local server.",
-			"categories": ["automation"],
-			"env": [{
-				"name": "HOMEASSISTANT_FQDN",
-				"label": "FQDN",
-				"default": "ha.example.com"
-			}]
-		}
-	]
+  "version": "2",
+  "templates": [
+    {
+      "type": 1,
+      "title": "Registry",
+      "description": "Docker image registry",
+      "categories": [
+        "docker"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/registry.png",
+      "image": "registry:latest",
+      "ports": [
+        "5000/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/var/lib/registry"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Nginx",
+      "description": "High performance web server",
+      "categories": [
+        "webserver"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/nginx.png",
+      "image": "nginx:latest",
+      "ports": [
+        "80/tcp",
+        "443/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/etc/nginx"
+        },
+        {
+          "container": "/usr/share/nginx/html"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Httpd",
+      "description": "Open-source HTTP server",
+      "categories": [
+        "webserver"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/httpd.png",
+      "image": "httpd:latest",
+      "ports": [
+        "80/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/usr/local/apache2/htdocs/"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Caddy",
+      "description": "HTTP/2 web server with automatic HTTPS",
+      "categories": [
+        "webserver"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/caddy.png",
+      "image": "abiosoft/caddy:latest",
+      "ports": [
+        "80/tcp",
+        "443/tcp",
+        "2015/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/root/.caddy"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "MySQL",
+      "description": "The most popular open-source database",
+      "categories": [
+        "database"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mysql.png",
+      "image": "mysql:latest",
+      "env": [
+        {
+          "name": "MYSQL_ROOT_PASSWORD",
+          "label": "Root password"
+        }
+      ],
+      "ports": [
+        "3306/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/var/lib/mysql"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "MariaDB",
+      "description": "Performance beyond MySQL",
+      "categories": [
+        "database"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mariadb.png",
+      "image": "mariadb:latest",
+      "env": [
+        {
+          "name": "MYSQL_ROOT_PASSWORD",
+          "label": "Root password"
+        }
+      ],
+      "ports": [
+        "3306/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/var/lib/mysql"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "PostgreSQL",
+      "description": "The most advanced open-source database",
+      "categories": [
+        "database"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/postgres.png",
+      "image": "postgres:latest",
+      "env": [
+        {
+          "name": "POSTGRES_USER",
+          "label": "Superuser"
+        },
+        {
+          "name": "POSTGRES_PASSWORD",
+          "label": "Superuser password"
+        }
+      ],
+      "ports": [
+        "5432/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/var/lib/postgresql/data"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Mongo",
+      "description": "Open-source document-oriented database",
+      "categories": [
+        "database"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mongo.png",
+      "image": "mongo:latest",
+      "ports": [
+        "27017/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/data/db"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "CockroachDB",
+      "description": "An open-source, survivable, strongly consistent, scale-out SQL database",
+      "categories": [
+        "database"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/cockroachdb.png",
+      "image": "cockroachdb/cockroach:latest",
+      "ports": [
+        "26257/tcp",
+        "8080/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/cockroach/cockroach-data"
+        }
+      ],
+      "command": "start --insecure"
+    },
+    {
+      "type": 1,
+      "title": "CrateDB",
+      "description": "An open-source distributed SQL database",
+      "categories": [
+        "database"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/cratedb.png",
+      "image": "crate:latest",
+      "ports": [
+        "4200/tcp",
+        "4300/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/data"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Elasticsearch",
+      "description": "Open-source search and analytics engine",
+      "categories": [
+        "database"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/elasticsearch.png",
+      "image": "elasticsearch:latest",
+      "ports": [
+        "9200/tcp",
+        "9300/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/usr/share/elasticsearch/data"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Gitlab CE",
+      "description": "Open-source end-to-end software development platform",
+      "note": "Default username is <b>root</b>. Check the <a href=\"https://docs.gitlab.com/omnibus/docker/README.html#after-starting-a-container\" target=\"_blank\">Gitlab documentation</a> to get started.",
+      "categories": [
+        "development",
+        "project-management"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/gitlab_ce.png",
+      "image": "gitlab/gitlab-ce:latest",
+      "ports": [
+        "80/tcp",
+        "443/tcp",
+        "22/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/etc/gitlab"
+        },
+        {
+          "container": "/var/log/gitlab"
+        },
+        {
+          "container": "/var/opt/gitlab"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Minio",
+      "description": "A distributed object storage server built for cloud applications and devops",
+      "categories": [
+        "storage"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/minio.png",
+      "image": "minio/minio:latest",
+      "ports": [
+        "9000/tcp"
+      ],
+      "env": [
+        {
+          "name": "MINIO_ACCESS_KEY",
+          "label": "Minio access key"
+        },
+        {
+          "name": "MINIO_SECRET_KEY",
+          "label": "Minio secret key"
+        }
+      ],
+      "volumes": [
+        {
+          "container": "/data"
+        },
+        {
+          "container": "/root/.minio"
+        }
+      ],
+      "command": "server /data"
+    },
+    {
+      "type": 1,
+      "title": "Scality S3",
+      "description": "Standalone AWS S3 protocol server",
+      "categories": [
+        "storage"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/scality-s3.png",
+      "image": "scality/s3server",
+      "ports": [
+        "8000/tcp"
+      ],
+      "env": [
+        {
+          "name": "SCALITY_ACCESS_KEY",
+          "label": "Scality S3 access key"
+        },
+        {
+          "name": "SCALITY_SECRET_KEY",
+          "label": "Scality S3 secret key"
+        }
+      ],
+      "volumes": [
+        {
+          "container": "/usr/src/app/localData"
+        },
+        {
+          "container": "/usr/src/app/localMetadata"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "SQL Server",
+      "description": "Microsoft SQL Server on Linux",
+      "categories": [
+        "database"
+      ],
+      "platform": "linux",
+      "note": "Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols.",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
+      "image": "microsoft/mssql-server-linux:2017-GA",
+      "ports": [
+        "1433/tcp"
+      ],
+      "env": [
+        {
+          "name": "ACCEPT_EULA",
+          "set": "Y"
+        },
+        {
+          "name": "SA_PASSWORD",
+          "label": "SA password"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "SQL Server",
+      "description": "Microsoft SQL Server Developer for Windows containers",
+      "categories": [
+        "database"
+      ],
+      "platform": "windows",
+      "note": "Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols.",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
+      "image": "microsoft/mssql-server-windows-developer:latest",
+      "ports": [
+        "1433/tcp"
+      ],
+      "env": [
+        {
+          "name": "ACCEPT_EULA",
+          "set": "Y"
+        },
+        {
+          "name": "sa_password",
+          "label": "SA password"
+        }
+      ],
+      "volumes": [
+        {
+          "container": "C:/temp/"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "SQL Server Express",
+      "description": "Microsoft SQL Server Express for Windows containers",
+      "categories": [
+        "database"
+      ],
+      "platform": "windows",
+      "note": "Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols.",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
+      "image": "microsoft/mssql-server-windows-express:latest",
+      "ports": [
+        "1433/tcp"
+      ],
+      "env": [
+        {
+          "name": "ACCEPT_EULA",
+          "set": "Y"
+        },
+        {
+          "name": "sa_password",
+          "label": "SA password"
+        }
+      ],
+      "volumes": [
+        {
+          "container": "C:/temp/"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "IronFunctions API",
+      "description": "Open-source serverless computing platform",
+      "categories": [
+        "serverless"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ironfunctions.png",
+      "image": "iron/functions:latest",
+      "ports": [
+        "8080/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/app/data"
+        }
+      ],
+      "privileged": true
+    },
+    {
+      "type": 1,
+      "title": "IronFunctions UI",
+      "description": "Open-source user interface for IronFunctions",
+      "categories": [
+        "serverless"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ironfunctions.png",
+      "image": "iron/functions-ui:latest",
+      "ports": [
+        "4000/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/app/data"
+        }
+      ],
+      "env": [
+        {
+          "name": "API_URL",
+          "label": "API URL"
+        }
+      ],
+      "privileged": true
+    },
+    {
+      "type": 1,
+      "title": "Solr",
+      "description": "Open-source enterprise search platform",
+      "categories": [
+        "search-engine"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/solr.png",
+      "image": "solr:latest",
+      "ports": [
+        "8983/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/opt/solr/mydata"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Redis",
+      "description": "Open-source in-memory data structure store",
+      "categories": [
+        "database"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/redis.png",
+      "image": "redis:latest",
+      "ports": [
+        "6379/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/data"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "RabbitMQ",
+      "description": "Highly reliable enterprise messaging system",
+      "categories": [
+        "messaging"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/rabbitmq.png",
+      "image": "rabbitmq:latest",
+      "ports": [
+        "5671/tcp",
+        "5672/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/var/lib/rabbitmq"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Ghost",
+      "description": "Free and open-source blogging platform",
+      "categories": [
+        "blog"
+      ],
+      "note": "Access the blog management interface under <code>/ghost/</code>.",
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ghost.png",
+      "image": "ghost:latest",
+      "ports": [
+        "2368/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/var/lib/ghost/content"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Plesk",
+      "description": "WebOps platform and hosting control panel",
+      "categories": [
+        "CMS"
+      ],
+      "platform": "linux",
+      "note": "Default credentials: admin / changeme",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/plesk.png",
+      "image": "plesk/plesk:latest",
+      "ports": [
+        "21/tcp",
+        "80/tcp",
+        "443/tcp",
+        "8880/tcp",
+        "8443/tcp",
+        "8447/tcp"
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Joomla",
+      "description": "Another free and open-source CMS",
+      "categories": [
+        "CMS"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/joomla.png",
+      "image": "joomla:latest",
+      "env": [
+        {
+          "name": "JOOMLA_DB_HOST",
+          "label": "MySQL database host",
+          "type": "container"
+        },
+        {
+          "name": "JOOMLA_DB_PASSWORD",
+          "label": "Database password"
+        }
+      ],
+      "ports": [
+        "80/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/var/www/html"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Drupal",
+      "description": "Open-source content management framework",
+      "categories": [
+        "CMS"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/drupal.png",
+      "image": "drupal:latest",
+      "ports": [
+        "80/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/var/www/html"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Plone",
+      "description": "A free and open-source CMS built on top of Zope",
+      "categories": [
+        "CMS"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/plone.png",
+      "image": "plone:latest",
+      "ports": [
+        "8080/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/data"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Magento 2",
+      "description": "Open-source e-commerce platform",
+      "categories": [
+        "CMS"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/magento.png",
+      "image": "alankent/gsd:latest",
+      "ports": [
+        "80/tcp",
+        "3000/tcp",
+        "3001/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/var/www/html/"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Sematext Docker Agent",
+      "description": "Collect logs, metrics and docker events",
+      "categories": [
+        "Log Management",
+        "Monitoring"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/sematext_agent.png",
+      "image": "sematext/sematext-agent-docker:latest",
+      "name": "sematext-agent",
+      "privileged": true,
+      "env": [
+        {
+          "name": "LOGSENE_TOKEN",
+          "label": "Logs token"
+        },
+        {
+          "name": "SPM_TOKEN",
+          "label": "SPM monitoring token"
+        }
+      ],
+      "volumes": [
+        {
+          "container": "/var/run/docker.sock",
+          "bind": "/var/run/docker.sock"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Datadog agent",
+      "description": "Collect events and metrics",
+      "categories": [
+        "Monitoring"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/datadog_agent.png",
+      "image": "datadog/agent:latest",
+      "env": [
+        {
+          "name": "DD_API_KEY",
+          "label": "Datadog API key"
+        }
+      ],
+      "volumes": [
+        {
+          "container": "/var/run/docker.sock",
+          "bind": "/var/run/docker.sock",
+          "readonly": true
+        },
+        {
+          "container": "/host/sys/fs/cgroup",
+          "bind": "/sys/fs/cgroup",
+          "readonly": true
+        },
+        {
+          "container": "/host/proc",
+          "bind": "/proc",
+          "readonly": true
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Mautic",
+      "description": "Open-source marketing automation platform",
+      "categories": [
+        "marketing"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mautic.png",
+      "image": "mautic/mautic:latest",
+      "env": [
+        {
+          "name": "MAUTIC_DB_HOST",
+          "label": "MySQL database host",
+          "type": "container"
+        },
+        {
+          "name": "MAUTIC_DB_PASSWORD",
+          "label": "Database password"
+        }
+      ],
+      "ports": [
+        "80/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/var/www/html"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Wowza",
+      "description": "Streaming media server",
+      "categories": [
+        "streaming"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wowza.png",
+      "image": "sameersbn/wowza:4.1.2-8",
+      "env": [
+        {
+          "name": "WOWZA_ACCEPT_LICENSE",
+          "label": "Agree to Wowza EULA",
+          "set": "yes"
+        },
+        {
+          "name": "WOWZA_KEY",
+          "label": "License key"
+        }
+      ],
+      "ports": [
+        "1935/tcp",
+        "8086/tcp",
+        "8087/tcp",
+        "8088/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/var/lib/wowza"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Jenkins",
+      "description": "Open-source continuous integration tool",
+      "categories": [
+        "continuous-integration"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/jenkins.png",
+      "image": "jenkins/jenkins:lts",
+      "ports": [
+        "8080/tcp",
+        "50000/tcp"
+      ],
+      "env": [
+        {
+          "name": "JENKINS_OPTS",
+          "label": "Jenkins options"
+        }
+      ],
+      "volumes": [
+        {
+          "container": "/var/jenkins_home"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Redmine",
+      "description": "Open-source project management tool",
+      "categories": [
+        "project-management"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/redmine.png",
+      "image": "redmine:latest",
+      "ports": [
+        "3000/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/usr/src/redmine/files"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Odoo",
+      "description": "Open-source business apps",
+      "categories": [
+        "project-management"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/odoo.png",
+      "image": "odoo:latest",
+      "env": [
+        {
+          "name": "HOST",
+          "label": "PostgreSQL database host",
+          "type": "container"
+        },
+        {
+          "name": "USER",
+          "label": "Database user"
+        },
+        {
+          "name": "PASSWORD",
+          "label": "Database password"
+        }
+      ],
+      "ports": [
+        "8069/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/var/lib/odoo"
+        },
+        {
+          "container": "/mnt/extra-addons"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Urbackup",
+      "description": "Open-source network backup",
+      "categories": [
+        "backup"
+      ],
+      "platform": "linux",
+      "note": "This application web interface is exposed on the port 55414 inside the container.",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/urbackup.png",
+      "image": "cfstras/urbackup",
+      "ports": [
+        "55413/tcp",
+        "55414/tcp",
+        "55415/tcp",
+        "35622/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/var/urbackup"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "File browser",
+      "description": "A web file manager",
+      "note": "Default credentials: admin/admin",
+      "categories": [
+        "filesystem",
+        "storage"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/filebrowser.png",
+      "image": "filebrowser/filebrowser:latest",
+      "ports": [
+        "80/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/data"
+        },
+        {
+          "container": "/srv"
+        }
+      ],
+      "command": "--port 80 --database /data/database.db --root /srv"
+    },
+    {
+      "type": 1,
+      "title": "CommandBox",
+      "description": "ColdFusion (CFML) CLI",
+      "categories": [
+        "development"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ortussolutions-commandbox.png",
+      "image": "ortussolutions/commandbox:latest",
+      "env": [
+        {
+          "name": "CFENGINE",
+          "set": "lucee@4.5"
+        }
+      ],
+      "ports": [
+        "8080/tcp",
+        "8443/tcp"
+      ]
+    },
+    {
+      "type": 1,
+      "title": "ContentBox",
+      "description": "Open-source modular CMS",
+      "categories": [
+        "CMS"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ortussolutions-contentbox.png",
+      "image": "ortussolutions/contentbox:latest",
+      "env": [
+        {
+          "name": "express",
+          "set": "true"
+        },
+        {
+          "name": "install",
+          "set": "true"
+        },
+        {
+          "name": "CFENGINE",
+          "set": "lucee@4.5"
+        }
+      ],
+      "ports": [
+        "8080/tcp",
+        "8443/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/data/contentbox/db"
+        },
+        {
+          "container": "/app/includes/shared/media"
+        }
+      ]
+    },
+    {
+      "type": 2,
+      "title": "Portainer Agent",
+      "description": "Manage all the resources in your Swarm cluster",
+      "note": "The agent will be deployed globally inside your cluster and available on port 9001.",
+      "categories": [
+        "portainer"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/portainer.png",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/portainer-agent/docker-stack.yml"
+      }
+    },
+    {
+      "type": 2,
+      "title": "OpenFaaS",
+      "name": "func",
+      "description": "Serverless functions made simple",
+      "note": "Deploys the API gateway and sample functions. You can access the UI on port 8080. <b>Warning</b>: the name of the stack must be 'func'.",
+      "categories": [
+        "serverless"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/openfaas.png",
+      "repository": {
+        "url": "https://github.com/openfaas/faas",
+        "stackfile": "docker-compose.yml"
+      }
+    },
+    {
+      "type": 2,
+      "title": "IronFunctions",
+      "description": "Open-source serverless computing platform",
+      "note": "Deploys the IronFunctions API and UI.",
+      "categories": [
+        "serverless"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ironfunctions.png",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/ironfunctions/docker-stack.yml"
+      }
+    },
+    {
+      "type": 2,
+      "title": "CockroachDB",
+      "description": "CockroachDB cluster",
+      "note": "Deploys an insecure CockroachDB cluster, please refer to <a href=\"https://www.cockroachlabs.com/docs/stable/orchestrate-cockroachdb-with-docker-swarm.html\" target=\"_blank\">CockroachDB documentation</a> for production deployments.",
+      "categories": [
+        "database"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/cockroachdb.png",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/cockroachdb/docker-stack.yml"
+      }
+    },
+    {
+      "type": 2,
+      "title": "Wordpress",
+      "description": "Wordpress setup with a MySQL database",
+      "note": "Deploys a Wordpress instance connected to a MySQL database.",
+      "categories": [
+        "CMS"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/wordpress/docker-stack.yml"
+      },
+      "env": [
+        {
+          "name": "MYSQL_DATABASE_PASSWORD",
+          "label": "Database root password",
+          "description": "Password used by the MySQL root user."
+        }
+      ]
+    },
+    {
+      "type": 3,
+      "title": "Wordpress",
+      "description": "Wordpress setup with a MySQL database",
+      "note": "Deploys a Wordpress instance connected to a MySQL database.",
+      "categories": [
+        "CMS"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/wordpress/docker-compose.yml"
+      },
+      "env": [
+        {
+          "name": "MYSQL_DATABASE_PASSWORD",
+          "label": "Database root password",
+          "description": "Password used by the MySQL root user."
+        }
+      ]
+    },
+    {
+      "type": 2,
+      "title": "Microsoft OMS Agent",
+      "description": "Microsoft Operations Management Suite Linux agent.",
+      "categories": [
+        "OPS"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/microsoft-oms/docker-stack.yml"
+      },
+      "env": [
+        {
+          "name": "AZURE_WORKSPACE_ID",
+          "label": "Workspace ID",
+          "description": "Azure Workspace ID"
+        },
+        {
+          "name": "AZURE_PRIMARY_KEY",
+          "label": "Primary key",
+          "description": "Azure primary key"
+        }
+      ]
+    },
+    {
+      "title": "Sematext Docker Agent",
+      "type": 2,
+      "categories": [
+        "Log Management",
+        "Monitoring"
+      ],
+      "description": "Collect logs, metrics and docker events",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/sematext_agent.png",
+      "platform": "linux",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/sematext-agent-docker/docker-stack.yml"
+      },
+      "env": [
+        {
+          "name": "LOGSENE_TOKEN",
+          "label": "Logs token"
+        },
+        {
+          "name": "SPM_TOKEN",
+          "label": "SPM monitoring token"
+        }
+      ]
+    },
+    {
+      "title": "Datadog agent",
+      "type": 2,
+      "categories": [
+        "Monitoring"
+      ],
+      "description": "Collect events and metrics",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/datadog_agent.png",
+      "platform": "linux",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/datadog-agent/docker-stack.yml"
+      },
+      "env": [
+        {
+          "name": "API_KEY",
+          "label": "Datadog API key"
+        }
+      ]
+    },
+    {
+      "type": 4,
+      "title": "Wordpress",
+      "description": "Wordpress setup with a MySQL database",
+      "note": "Deploys a Wordpress instance connected to a MySQL database.",
+      "stackfile": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/stacks/wordpress/edge/docker-stack.yml"
+    },
+    {
+      "type": 4,
+      "title": "CockroachDB",
+      "description": "CockroachDB cluster",
+      "note": "Deploys an insecure CockroachDB cluster, please refer to <a href=\"https://www.cockroachlabs.com/docs/stable/orchestrate-cockroachdb-with-docker-swarm.html\" target=\"_blank\">CockroachDB documentation</a> for production deployments.",
+      "stackfile": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/stacks/cockroachdb/edge/docker-stack.yml"
+    },
+    {
+      "type": 3,
+      "title": "Plex",
+      "logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/plex.png",
+      "description": "Plex brings together all the media that matters to you. Your personal collection will look beautiful alongside stellar streaming content. Enjoy Live TV & DVR, a growing catalog of great web shows, news, and podcasts. It's finally possible to enjoy all the media you love in a single app, on any device, no matter where you are.",
+      "notes": "Plex must run in standalone mode to for hardware transcoding. To connect this to traefik you must add routing to the file provider.",
+      "categories": [
+        "plex",
+        "media"
+      ],
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/plex/docker-compose.yml"
+      },
+      "env": [
+        {
+          "name": "PLEX_FQDN",
+          "label": "Plex FQDN",
+          "default": "plex.exmaple.com"
+        },
+        {
+          "name": "PLEX_TZ",
+          "label": "Time Zone",
+          "default": "America/New_York"
+        },
+        {
+          "name": "PLEX_UID",
+          "label": "Plex User Id"
+        },
+        {
+          "name": "PLEX_GID",
+          "label": "Plex Group Id"
+        },
+        {
+          "name": "PLEX_CLAIM",
+          "label": "Plex Claim"
+        }
+      ]
+    },
+    {
+      "type": 2,
+      "title": "MovieMatch",
+      "description": "Have you ever spent longer deciding on a movie than it'd take to just watch a random movie? This is an app that helps you and your friends pick a movie to watch from a Plex server.",
+      "note": "Deploys a MovieMatch server connected to traefik. You must first configure DNS entrires before deploying this stack",
+      "categories": [
+        "Plex",
+        "Media"
+      ],
+      "logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/moviematch.jpeg",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/plex/moviematch/moviematch-stack.yml"
+      },
+      "env": [
+        {
+          "name": "PLEX_URL",
+          "label": "URL for Plex",
+          "description": "The URL for you Plex instance",
+          "default": "https://plex.example.com"
+        },
+        {
+          "name": "PLEX_TOKEN",
+          "label": "Plex Token"
+        },
+        {
+          "name": "MOVIE_MATCH_LOG_LEVEL",
+          "label": "Log level",
+          "description": "The Log level for Movie Match",
+          "select": [
+            {
+              "text": "INFO",
+              "value": "INFO",
+              "default": true
+            },
+            {
+              "text": "DEBUG",
+              "value": "DEBUG"
+            },
+            {
+              "text": "WARNING",
+              "value": "WARNING"
+            },
+            {
+              "text": "ERROR",
+              "value": "ERROR"
+            },
+            {
+              "text": "CRITICAL",
+              "value": "CRITICAL"
+            }
+          ]
+        },
+        {
+          "name": "MOVIE_MATCH_LIBRARY_FILTER",
+          "label": "Library filter",
+          "description": "Libraries to include in matching",
+          "default": "Movies, TV Shows"
+        },
+        {
+          "name": "MOVIE_MATCH_FQDN",
+          "label": "Movie Match FQDN",
+          "description": "Ensure that this will resolve to the host machine prior to deploying this stack",
+          "default": "moviematch.example.com"
+        }
+      ]
+    },
+    {
+      "type": 2,
+      "title": "traefik",
+      "logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/traefik.png",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/traefik/traefik-stack.yml"
+      },
+      "description": "Traefik is a leading modern reverse proxy and load balancer that makes deploying microservices easy. Traefik integrates with your existing infrastructure components and configures itself automatically and dynamically.",
+      "categories": [
+        "reverse-proxy"
+      ],
+      "env": [
+        {
+          "name": "TRAEFIK_FQDN",
+          "label": "Traefik FQDN",
+          "description": "The FQDN to use for Traefik",
+          "default": "traefik.example.com"
+        },
+        {
+          "name": "ACME_EMAIL",
+          "label": "ACME E-Mail",
+          "description": "The email address used to communicate with letsencrypte.",
+          "default": "youname@yourdomain.com"
+        },
+        {
+          "name": "TRAEFIK_LE_DIR",
+          "label": "letsencrypt directory",
+          "description": "Storage for certificates from letsencrypt.",
+          "default": "/opt/traefik/letsencrypt"
+        },
+        {
+          "name": "TRAEFIK_CONFIG_DIR",
+          "label": "Config directory",
+          "description": "Directory with configuration files for traefik.",
+          "default": "/opt/traefik/config"
+        },
+        {
+          "name": "GCE_PROJECT",
+          "label": "GCE Project",
+          "description": "Google Cloud project name"
+        }
+      ]
+    },
+    {
+      "type": 2,
+      "title": "Authelia",
+      "logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/authelia.png",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/authelia/authelia-stack.yml"
+      },
+      "description": "Protect your applications with Single Sign-On and 2 Factor. Authelia is an open-source full-featured authentication server available on Github.",
+      "categories": [
+        "authentication"
+      ],
+      "env": [
+        {
+          "name": "AUTHELIA_FQDN",
+          "label": "Authelia FQDN",
+          "description": "The FQDN to use for Authelia",
+          "default": "auth.example.com"
+        },
+        {
+          "name": "AUTHELIA_CONFIG_DIR",
+          "label": "Config directory",
+          "description": "Directory with config.yml file for Authelia",
+          "default": "/opt/authelia/config"
+        },
+        {
+          "name": "AUTHELIA_REDIS_DATA_DIR",
+          "label": "Redis data directory",
+          "description": "Directory for Redsi",
+          "default": "/opt/authelia/redis"
+        }
+      ]
+    },
+    {
+      "type": 2,
+      "title": "Wekan",
+      "logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/wekan.png",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/wekan/wekan-stack.yml"
+      },
+      "description": "Wekan is an open-source kanban board which allows a card-based task and to-do management.",
+      "categories": [
+        "Project Management"
+      ],
+      "env": [
+        {
+          "name": "ROOT_URL",
+          "label": "Root URL",
+          "description": "Root URL",
+          "default": "https://wekan.example.com"
+        },
+        {
+          "name": "FQDN",
+          "label": "Wekan FQDN",
+          "description": "Wekan FQDN",
+          "default": "wekan.example.com"
+        },
+        {
+          "name": "MAIL_URL",
+          "label": "Mail URL",
+          "description": "Mail send url",
+          "default": "smtps://smtp.gmail.com:587"
+        },
+        {
+          "name": "MAIL_SERVICE",
+          "label": "Mail Service",
+          "description": "Mail service name",
+          "default": "GMail"
+        },
+        {
+          "name": "MAIL_SERVICE_USER",
+          "label": "Mail service user",
+          "description": "Mail service user name"
+        },
+        {
+          "name": "MAIL_SERVICE_PASSWORD",
+          "label": "Mail service password",
+          "description": "Mail service app password"
+        },
+        {
+          "name": "CORS",
+          "label": "CORS",
+          "description": "CORS authorized domains",
+          "default": "Access-Control-Allow-Origin: *.example.com"
+        },
+        {
+          "name": "OAUTH2_CLIENT_ID",
+          "label": "OAuth Client Id"
+        },
+        {
+          "name": "OAUTH2_SECRET",
+          "label": "OAuth secret"
+        },
+        {
+          "name": "OAUTH2_SERVER_URL",
+          "label": "OAuth2 server URL"
+        }
+      ]
+    },
+    {
+      "type": 2,
+      "title": "Prowlarr",
+      "logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/prowlarr.png",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/arr/prowlarr-stack.yml"
+      },
+      "description": "Prowlarr is an indexer manager/proxy built on the popular arr .net/reactjs base stack to integrate with your various PVR apps. Prowlarr supports management of both Torrent Trackers and Usenet Indexers. It integrates seamlessly with Lidarr, Mylar3, Radarr, Readarr, and Sonarr offering complete management of your indexers with no per app Indexer setup required (we do it all).",
+      "categories": [
+        "media"
+      ],
+      "env": [
+        {
+          "name": "PROWLARR_FQDN",
+          "label": "FQDN",
+          "default": "prowlarr.example.com"
+        },
+        {
+          "name": "PROWLARR_PUID",
+          "label": "User Id"
+        },
+        {
+          "name": "PROWLARR_PGID",
+          "label": "Group Id"
+        },
+        {
+          "name": "PROWLARR_TZ",
+          "label": "Timezone",
+          "default": "America/New_York"
+        }
+      ]
+    },
+    {
+      "type": 2,
+      "title": "Sonarr",
+      "logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/sonarr.png",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/arr/sonarr-stack.yml"
+      },
+      "description": "Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.",
+      "categories": [
+        "media"
+      ],
+      "env": [
+        {
+          "name": "SONARR_FQDN",
+          "label": "FQDN",
+          "default": "sonarr.example.com"
+        },
+        {
+          "name": "SONARR_PUID",
+          "label": "User Id"
+        },
+        {
+          "name": "SONARR_PGID",
+          "label": "Group Id"
+        },
+        {
+          "name": "SONARR_TZ",
+          "label": "Timezone",
+          "default": "America/New_York"
+        }
+      ]
+    },
+    {
+      "type": 2,
+      "title": "Radarr",
+      "logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/radarr.png",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/arr/radarr-stack.yml"
+      },
+      "description": "Radarr is a movie collection manager for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new movies and will interface with clients and indexers to grab, sort, and rename them. It can also be configured to automatically upgrade the quality of existing files in the library when a better quality format becomes available.",
+      "categories": [
+        "media"
+      ],
+      "env": [
+        {
+          "name": "RADARR_FQDN",
+          "label": "FQDN",
+          "default": "radarr.example.com"
+        },
+        {
+          "name": "RADARR_PUID",
+          "label": "User Id"
+        },
+        {
+          "name": "RADARR_PGID",
+          "label": "Group Id"
+        },
+        {
+          "name": "RADARR_TZ",
+          "label": "Timezone",
+          "default": "America/New_York"
+        }
+      ]
+    },
+    {
+      "type": 2,
+      "title": "Bazarr",
+      "logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/bazarr.png",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/arr/bazarr-stack.yml"
+      },
+      "description": "Bazarr is a companion application to Sonarr and Radarr that manages and downloads subtitles based on your requirements.",
+      "categories": [
+        "media"
+      ],
+      "env": [
+        {
+          "name": "BAZARR_FQDN",
+          "label": "FQDN",
+          "default": "bazarr.example.com"
+        },
+        {
+          "name": "BAZARR_PUID",
+          "label": "User Id"
+        },
+        {
+          "name": "BAZARR_PGID",
+          "label": "Group Id"
+        },
+        {
+          "name": "BAZARR_TZ",
+          "label": "Timezone",
+          "default": "America/New_York"
+        }
+      ]
+    },
+    {
+      "type": 2,
+      "title": "Overseerr",
+      "logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/overseerr.svg",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/arr/overseerr-stack.yml"
+      },
+      "description": "Overseerr is a request management and media discovery tool built to work with your existing Plex ecosystem.",
+      "categories": [
+        "media"
+      ],
+      "env": [
+        {
+          "name": "OVERSEERR_FQDN",
+          "label": "FQDN",
+          "default": "overseerr.example.com"
+        },
+        {
+          "name": "OVERSEERR_PUID",
+          "label": "User Id"
+        },
+        {
+          "name": "OVERSEERR_PGID",
+          "label": "Group Id"
+        },
+        {
+          "name": "OVERSEERR_TZ",
+          "label": "Timezone",
+          "default": "America/New_York"
+        }
+      ]
+    },
+    {
+      "type": 2,
+      "title": "NZBGet",
+      "logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/nzbget.png",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/arr/nzbget-stack.yml"
+      },
+      "description": "NZBGet is a binary downloader, which downloads files from Usenet based on information given in nzb-files.",
+      "categories": [
+        "media"
+      ],
+      "env": [
+        {
+          "name": "NZBGET_FQDN",
+          "label": "FQDN",
+          "default": "nzbget.example.com"
+        },
+        {
+          "name": "NZBGET_PUID",
+          "label": "User Id"
+        },
+        {
+          "name": "NZBGET_PGID",
+          "label": "Group Id"
+        },
+        {
+          "name": "NZBGET_TZ",
+          "label": "Timezone",
+          "default": "America/New_York"
+        }
+      ]
+    },
+    {
+      "type": 2,
+      "title": "Docker Image Update Notifier",
+      "logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/diun.png",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/diun/diun-stack.yml"
+      },
+      "description": "Docker Image Update Notifier is a CLI application written in Go and delivered as a single executable (and a Docker image) to receive notifications when a Docker image is updated on a Docker registry.",
+      "categories": [
+        "docker"
+      ]
+    },
+    {
+      "type": 2,
+      "title": "Home Assistant",
+      "logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/home-assistant.svg",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/home-assistant/hassio-stack.yml"
+      },
+      "description": "Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts. Perfect to run on a Raspberry Pi or a local server.",
+      "categories": [
+        "automation"
+      ],
+      "env": [
+        {
+          "name": "HOMEASSISTANT_FQDN",
+          "label": "FQDN",
+          "default": "ha.example.com"
+        }
+      ]
+    },
+    {
+      "type": 2,
+      "title": "Leantime",
+      "logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/leantime.png",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/arr/leantime-stack.yml"
+      },
+      "description": "Project Management",
+      "categories": [
+        "Project Management"
+      ],
+      "env": [
+        {
+          "name": "LEANTIME_FQDN",
+          "label": "FQDN",
+          "default": "leantime.example.com"
+        },
+        {
+          "name": "MYSQL_ROOT_PASSWORD",
+          "label": "Password",
+          "default": "use a good password"
+        },
+        {
+          "name": "MYSQL_PASSWORD",
+          "label": "Password",
+          "default": "use a good password"
+        },
+        {
+          "name": "LEAN_OIDC_CLIENT_ID",
+          "label": "Password",
+          "default": "use a good password"
+        },
+        {
+          "name": "LEAN_OIDC_CLIENT_SECRET",
+          "label": "Password",
+          "default": "use a good password"
+        },
+        {
+          "name": "LEAN_OIDC_PROVIDER_URL",
+          "label": "Password",
+          "default": "use a good password"
+        }
+      ]
+    },
+  ]
 }

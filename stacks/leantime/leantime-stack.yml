@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  leantime_db:
+    image: mysql:8.4
+    volumes:
+      - /opt/leantime/data:/var/lib/mysql
+    restart: unless-stopped
+    networks:
+      - leantime-net
+    command: --character-set-server=UTF8MB4 --collation-server=UTF8MB4_unicode_ci
+
+  leantime:
+    image: leantime/leantime:latest
+    networks:
+      - leantime-net
+      - traefik-public
+    volumes:
+      - /opt/leantime/public_userfiles:/var/www/html/public/userfiles     # Volume to store public files, logo etc
+      - /opt/leantime/userfiles:/var/www/html/userfiles                   # Volume to store private user uploaded files
+      - /opt/leantime/plugins:/var/www/html/app/Plugins                   # Uncomment if you are planning to use plugins from the marketplace
+    depends_on:
+      - leantime_db                                         # Don't start Leantime unless leantime_db is running
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.services.leantime.loadbalancer.server.port=8081"
+        - "traefik.http.routers.leantime.rule=Host(`${LEANTIME_FQDN}`)"
+        - "traefik.http.routers.leantime.middlewares=authelia@docker"
+        - "traefik.http.routers.leantime.tls=true"
+        - "traefik.http.routers.leantime.entrypoints=websecure"
+    environment:
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'                # MySQL root password
+      MYSQL_DATABASE: leantime                        # Database name
+      MYSQL_USER: 'lean'                                # Database username
+      MYSQL_PASSWORD: '${MYSQL_PASSWORD}'                     # Database password
+      # Database - leantime container
+      LEAN_DB_HOST: leantime_db                    # Database host 
+      LEAN_DB_USER: 'lean'                              # Database username (needs to be the same as MYSQL_USER)
+      LEAN_DB_PASSWORD: '${MYSQL_PASSWORD}'                   # Database password (needs to be the same as MYSQL_PASSWORD)
+      LEAN_DB_DATABASE: leantime                      # Database name (needs to be the same as MYSQL_DATABASE)
+      LEAN_DB_PORT: 3306                              # Database port
+      ## OpenID Connect
+      # required
+      LEAN_OIDC_ENABLE: true 
+      LEAN_OIDC_CLIENT_ID: ${LEAN_OIDC_CLIENT_ID}
+      LEAN_OIDC_CLIENT_SECRET: ${LEAN_OIDC_CLIENT_SECRET}
+      # required - the URL for your provider (examples down below)
+      LEAN_OIDC_PROVIDER_URL: ${LEAN_OIDC_PROVIDER_URL}
+      #Create User if it doesn't exist in Leantime db, otherwise fail login
+      LEAN_OIDC_CREATE_USER: true 
+      # Default role for users created via OIDC (20 is editor)
+      LEAN_OIDC_DEFAULT_ROLE: 20
+      LEAN_OIDC_SCOPES: openid,profile,email
+      LEAN_OIDC_FIELD_EMAIL: email.email
+      LEAN_OIDC_FIELD_FIRSTNAME: profile.preferred_username
+      ## OpenID Connect setting for GitHub
+      #LEAN_OIDC_PROVIDER_URL = https://token.actions.githubusercontent.com/
+      #LEAN_OIDC_AUTH_URL_OVERRIDE = https://github.com/login/oauth/authorize
+      #LEAN_OIDC_TOKEN_URL_OVERRIDE = https://github.com/login/oauth/access_token
+      #LEAN_OIDC_USERINFO_URL_OVERRIDE = https://api.github.com/user,https://api.github.com/user/emails
+      #LEAN_OIDC_SCOPES = user:email,read:user
+      #LEAN_OIDC_FIELD_EMAIL = 0.email
+      #LEAN_OIDC_FIELD_FIRSTNAME = name
+networks:
+  leantime-net:
+  traefik-public:
+    external: true
