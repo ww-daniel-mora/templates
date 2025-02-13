@@ -14,6 +14,7 @@ services:
       MYSQL_DATABASE: leantime                        # Database name
       MYSQL_USER: 'lean'                                # Database username
       MYSQL_PASSWORD: '${MYSQL_PASSWORD}'                     # Database password
+      LEAN_DB_PORT: '3306'                              # Database port
 
   leantime:
     image: leantime/leantime:latest
@@ -29,14 +30,18 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.services.leantime.loadbalancer.server.port=8081"
-        - "traefik.http.routers.leantime.rule=Host(`${LEANTIME_FQDN}`)"
-        - "traefik.http.routers.leantime.middlewares=authelia@docker"
-        - "traefik.http.routers.leantime.tls=true"
         - "traefik.http.routers.leantime.entrypoints=websecure"
+        - "traefik.http.routers.leantime.middlewares=authelia@swarm"
+        - "traefik.http.routers.leantime.rule=Host(`${LEANTIME_FQDN}`)"
+        - "traefik.http.routers.leantime.tls.certResolver=dns-resolver"
+        - "traefik.http.routers.leantime.tls.domains[0].main=${LEANTIME_FQDN}"
+        - "traefik.http.routers.leantime.tls.domains[0].sans[0]=${LEANTIME_SANS}"
+        - "traefik.http.services.leantime.loadbalancer.server.port=8081"
+        - "traefik.http.routers.leantime.tls=true"
     environment:
       MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'                # MySQL root password
       MYSQL_DATABASE: leantime                        # Database name
+      LEAN_PORT: '8081'                                 # The port to expose and access Leantime
       MYSQL_USER: 'lean'                                # Database username
       MYSQL_PASSWORD: '${MYSQL_PASSWORD}'                     # Database password
       # Database - leantime container
@@ -44,7 +49,7 @@ services:
       LEAN_DB_USER: 'lean'                              # Database username (needs to be the same as MYSQL_USER)
       LEAN_DB_PASSWORD: '${MYSQL_PASSWORD}'                   # Database password (needs to be the same as MYSQL_PASSWORD)
       LEAN_DB_DATABASE: leantime                      # Database name (needs to be the same as MYSQL_DATABASE)
-      LEAN_DB_PORT: 3306                              # Database port
+      LEAN_DB_PORT: '3306'                              # Database port
       ## OpenID Connect
       # required
       LEAN_OIDC_ENABLE: 'true'

@@ -1659,6 +1659,11 @@
           "default": "leantime.example.com"
         },
         {
+          "name": "LEANTIME_SANS",
+          "label": "Subject Alternative Names",
+          "default": "*.example.com"
+        },
+        {
           "name": "MYSQL_ROOT_PASSWORD",
           "label": "MYSQL Root Password",
           "default": "use a good password"
