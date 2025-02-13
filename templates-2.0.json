@@ -1660,28 +1660,28 @@
         },
         {
           "name": "MYSQL_ROOT_PASSWORD",
-          "label": "Password",
+          "label": "MYSQL Root Password",
           "default": "use a good password"
         },
         {
           "name": "MYSQL_PASSWORD",
-          "label": "Password",
+          "label": "MYSQL Password",
           "default": "use a good password"
         },
         {
           "name": "LEAN_OIDC_CLIENT_ID",
-          "label": "Password",
-          "default": "use a good password"
+          "label": "OIDC Client Id",
+          "default": "70 characters"
         },
         {
           "name": "LEAN_OIDC_CLIENT_SECRET",
-          "label": "Password",
-          "default": "use a good password"
+          "label": "OIDC Client Secret",
+          "default": "70 characters"
         },
         {
           "name": "LEAN_OIDC_PROVIDER_URL",
-          "label": "Password",
-          "default": "use a good password"
+          "label": "OIDC Provider URL",
+          "default": "https://auth.example.com"
         }
       ]
     }
