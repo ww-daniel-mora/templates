@@ -42,13 +42,13 @@ services:
       LEAN_DB_PORT: 3306                              # Database port
       ## OpenID Connect
       # required
-      LEAN_OIDC_ENABLE: true 
+      LEAN_OIDC_ENABLE: 'true'
       LEAN_OIDC_CLIENT_ID: ${LEAN_OIDC_CLIENT_ID}
       LEAN_OIDC_CLIENT_SECRET: ${LEAN_OIDC_CLIENT_SECRET}
       # required - the URL for your provider (examples down below)
       LEAN_OIDC_PROVIDER_URL: ${LEAN_OIDC_PROVIDER_URL}
       #Create User if it doesn't exist in Leantime db, otherwise fail login
-      LEAN_OIDC_CREATE_USER: true 
+      LEAN_OIDC_CREATE_USER: 'true'
       # Default role for users created via OIDC (20 is editor)
       LEAN_OIDC_DEFAULT_ROLE: 20
       LEAN_OIDC_SCOPES: openid,profile,email
