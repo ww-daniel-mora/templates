@@ -1,0 +1,62 @@
+version: "3.8"
+services:
+  romm:
+    image: rommapp/romm:latest
+    environment:
+      - DB_HOST=romm-db
+      - DB_NAME=romm # Should match MARIADB_DATABASE in mariadb
+      - DB_USER=romm-user # Should match MARIADB_USER in mariadb
+      - DB_PASSWD=${DB_PASSWD} # Should match MARIADB_PASSWORD in mariadb
+      - ROMM_AUTH_SECRET_KEY=${ROMM_AUTH_SECRET_KEY} # Generate a key with `openssl rand -hex 32`
+      - IGDB_CLIENT_ID=${IGDB_CLIENT_ID} # Generate an ID and SECRET in IGDB
+      - IGDB_CLIENT_SECRET=${IGDB_CLIENT_SECRET} # https://docs.romm.app/latest/Getting-Started/Generate-API-Keys/#igdb
+      - MOBYGAMES_API_KEY=${MOBYGAMES_API_KEY} # https://docs.romm.app/latest/Getting-Started/Generate-API-Keys/#mobygames
+      - STEAMGRIDDB_API_KEY=${STEAMGRIDDB_API_KEY} # https://docs.romm.app/latest/Getting-Started/Generate-API-Keys/#steamgriddb
+      - SCREENSCRAPER_USER=${SCREENSCRAPER_USER} # Use your ScreenScraper username and password
+      - SCREENSCRAPER_PASSWORD=${SCREENSCRAPER_PASSWORD} # https://docs.romm.app/latest/Getting-Started/Generate-API-Keys/#screenscraper
+    volumes:
+      - /opt/romm/resources.d:/romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
+      - /opt/romm/redis.d:/redis-data # Cached data for background tasks
+      - /opt/romm/library.d:/romm/library # Your game library. Check https://github.com/rommapp/romm?tab=readme-ov-file#folder-structure for more details.
+      - /opt/romm/assets.d:/romm/assets # Uploaded saves, states, etc.
+      - /opt/romm/config.d:/romm/config # Path where config.yml is stored
+    networks:
+      - traefik-public
+      - romm-net
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.romm.entrypoints=websecure"
+        - "traefik.http.routers.romm.middlewares=authelia@swarm"
+        - "traefik.http.routers.romm.rule=Host(`${ROMM_FQDN}`)"
+        - "traefik.http.routers.romm.tls.certResolver=dns-resolver"
+        - "traefik.http.routers.romm.tls.domains[0].main=${ROMM_FQDN}"
+        - "traefik.http.routers.romm.tls.domains[0].sans[0]=${ROMM_SANS}"
+        - "traefik.http.services.romm.loadbalancer.server.port=8080"
+        - "traefik.http.routers.romm.tls=true"
+    depends_on:
+      romm-db:
+        condition: service_healthy
+        restart: true
+
+  romm-db:
+    image: mariadb:latest
+    restart: unless-stopped
+    environment:
+      - MARIADB_ROOT_PASSWORD='${DB_ROOT_PASSWD}' # Use a unique, secure password
+      - MARIADB_DATABASE=romm
+      - MARIADB_USER=romm-user
+      - MARIADB_PASSWORD='${DB_PASSWD}'
+    volumes:
+      - /opt/romm/database.d:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 30s
+      start_interval: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 5
+networks:
+  romm-net:
+  traefik-public:
+    external: true

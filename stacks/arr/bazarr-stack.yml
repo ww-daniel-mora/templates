@@ -15,11 +15,14 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.services.bazarr.loadbalancer.server.port=6767"
-        - "traefik.http.routers.bazarr.rule=Host(`${BAZARR_FQDN}`)"
-        - "traefik.http.routers.bazarr.middlewares=authelia@docker"
-        - "traefik.http.routers.bazarr.tls=true"
         - "traefik.http.routers.bazarr.entrypoints=websecure"
+        - "traefik.http.routers.bazarr.middlewares=authelia@swarm"
+        - "traefik.http.routers.bazarr.rule=Host(`${BAZARR_FQDN}`)"
+        - "traefik.http.routers.bazarr.tls.certResolver=dns-resolver"
+        - "traefik.http.routers.bazarr.tls.domains[0].main=${BAZARR_FQDN}"
+        - "traefik.http.routers.bazarr.tls.domains[0].sans[0]=${BAZARR_SANS}"
+        - "traefik.http.services.bazarr.loadbalancer.server.port=6767"
+        - "traefik.http.routers.bazarr.tls=true"
 networks:
   traefik-public:
     external: true
