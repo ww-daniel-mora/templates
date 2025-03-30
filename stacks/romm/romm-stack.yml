@@ -49,6 +49,8 @@ services:
       - MARIADB_PASSWORD='${DB_PASSWD}'
     volumes:
       - /opt/romm/database.d:/var/lib/mysql
+    networks:
+      - romm-net
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
       start_period: 30s
