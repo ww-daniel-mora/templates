@@ -1664,8 +1664,8 @@
           "default": "*.example.com"
         },
         {
-          "name": "MYSQL_ROOT_PASSWORD",
           "label": "MYSQL Root Password",
+          "name": "MYSQL_ROOT_PASSWORD",
           "default": "use a good password"
         },
         {
@@ -1687,6 +1687,67 @@
           "name": "LEAN_OIDC_PROVIDER_URL",
           "label": "OIDC Provider URL",
           "default": "https://auth.example.com"
+        }
+      ]
+    },
+    {
+      "type": 2,
+      "title": "RomM",
+      "logo": "https://raw.githubusercontent.com/ww-daniel-mora/templates/master/resources/romm.png",
+      "repository": {
+        "url": "https://github.com/ww-daniel-mora/templates",
+        "stackfile": "stacks/romm/romm-stack.yml"
+      },
+      "description": "RomM (ROM Manager) allows you to scan, enrich, browse and play your game collection with a clean and responsive interface. With support for multiple platforms, various naming schemes, and custom tags, RomM is a must-have for anyone who plays on emulators",
+      "categories": [
+        "media"
+      ],
+      "env": [
+        {
+          "name": "DB_PASSWD",
+          "label": "Database Password"
+        },
+        {
+          "name": "DB_ROOT_PASSWD",
+          "label": "Root Database Password"
+        },
+        {
+          "name": "ROMM_AUTH_SECRET_KEY",
+          "label": "Auth Secret Key"
+        },
+        {
+          "name": "IGDB_CLIENT_ID",
+          "label": "IGDB Client Id"
+        },
+        {
+          "name": "IGDB_CLIENT_SECRET",
+          "label": "IGDB Client Secret"
+        },
+        {
+          "name": "MOBYGAMES_API_KEY",
+          "label": "MobyGames API Key"
+        },
+        {
+          "name": "STEAMGRIDDB_API_KEY",
+          "label": "SteamGridDB API Key"
+        },
+        {
+          "name": "SCREENSCRAPER_USER",
+          "label": "Screenscraper User"
+        },
+        {
+          "name": "SCREENSCRAPER_PASSWORD",
+          "label": "Screnscraper Password"
+        },
+        {
+          "name": "ROMM_FQDN",
+          "label": "RomM FQDN",
+          "default": "romm.example.com"
+        },
+        {
+          "name": "ROMM_SANS",
+          "label": "RomM SANS",
+          "default": "*.example.com"
         }
       ]
     }
