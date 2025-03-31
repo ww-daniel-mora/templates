@@ -33,11 +33,6 @@ services:
         - "traefik.http.routers.romm.tls.domains[0].sans[0]=${ROMM_SANS}"
         - "traefik.http.services.romm.loadbalancer.server.port=8080"
         - "traefik.http.routers.romm.tls=true"
-    depends_on:
-      romm-db:
-        condition: service_healthy
-        restart: true
-
   romm-db:
     image: mariadb:latest
     restart: unless-stopped
