@@ -1724,10 +1724,6 @@
           "label": "IGDB Client Secret"
         },
         {
-          "name": "MOBYGAMES_API_KEY",
-          "label": "MobyGames API Key"
-        },
-        {
           "name": "STEAMGRIDDB_API_KEY",
           "label": "SteamGridDB API Key"
         },
