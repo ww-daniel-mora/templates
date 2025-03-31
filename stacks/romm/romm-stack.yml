@@ -37,7 +37,7 @@ services:
     image: mariadb:latest
     restart: unless-stopped
     environment:
-      - MARIADB_ROOT_PASSWORD='${DB_ROOT_PASSWD}' # Use a unique, secure password
+      - MARIADB_ROOT_PASSWORD=${DB_ROOT_PASSWD} # Use a unique, secure password
       - MARIADB_DATABASE=romm
       - MARIADB_USER=romm-user
       - MARIADB_PASSWORD=${DB_PASSWD}
