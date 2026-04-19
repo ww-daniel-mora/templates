@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: matter-server
+  namespace: home
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: matter-server
+  template:
+    metadata:
+      labels:
+        app: matter-server
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+        - name: matter-server
+          image: ghcr.io/home-assistant-libs/python-matter-server:stable
+          ports:
+            - containerPort: 5580
+              hostPort: 5580
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: matter-data
+              mountPath: /data
+            - name: dbus
+              mountPath: /run/dbus
+              readOnly: true
+      volumes:
+        - name: matter-data
+          hostPath:
+            path: /opt/matter-server/data
+            type: DirectoryOrCreate
+        - name: dbus
+          hostPath:
+            path: /run/dbus

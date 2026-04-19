@@ -29,10 +29,10 @@ services:
       - authelia-storage-encryption-key
     environment:
       - TZ=America/New_York
-      - AUTHELIA_JWT_SECRET_FILE=/run/secrets/authelia-jwt
+      - X_AUTHELIA_CONFIG_FILTERS=template
+      - AUTHELIA_IDENTITY_VALIDATION_RESET_PASSWORD_JWT_SECRET_FILE=/run/secrets/authelia-jwt
       - AUTHELIA_SESSION_SECRET_FILE=/run/secrets/authelia-session
       - AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE=/run/secrets/authelia-gmail-smtp-pw
-      - AUTHELIA_IDENTITY_PROVIDERS_OIDC_ISSUER_PRIVATE_KEY_FILE=/run/secrets/authelia-oidc-private-key
       - AUTHELIA_IDENTITY_PROVIDERS_OIDC_HMAC_SECRET_FILE=/run/secrets/authelia-hmac
       - AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE=/run/secrets/authelia-storage-encryption-key
 
